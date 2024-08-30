@@ -1,11 +1,13 @@
 # node-red-contrib-2-ui-video
-A Node-RED node for playing video in dashboard D2.
+A Node-RED node for playing video in Node-RED VueJs dashboard D2.
 
-This ui node is a successor of the [node-red-ui-mp4frag](https://github.com/kevinGodell/node-red-ui-mp4frag) from [Kevin Godell](https://github.com/kevinGodell).  Some code snippets for this new node have been copied shameless from Kevin's node :yum:.  So lots of credits go to Kevin...
+This ui node is a successor of the [node-red-ui-mp4frag](https://github.com/kevinGodell/node-red-ui-mp4frag), which [Kevin Godell](https://github.com/kevinGodell) had developed for the original AngularJs Node-RED dashboard.  Some code snippets for this new node have been copied shameless from Kevin's node :yum:.  So lots of credits go to Kevin...
 
 ## Install
-Run the following npm command in your Node-RED user directory (typically ~/.node-red), since this node hasn't been published on NPM yet:
-``
+CAUTION: Currently this node is ***EXPERIMENTAL***.  It is not published on NPM yet, so it need to be installed directly from this Github repo.
+
+Run the following npm command in your Node-RED user directory (typically ~/.node-red):
+```
 npm install bartbutenaers/node-red-contrib-2-ui-video
 ```
 
@@ -24,10 +26,10 @@ The following example flow demonstrates how to play mp4 and hls, and how to cont
 ## Node properties
 
 ### Url
-Link to a video resource (e.g. an mp4 or m3u8 file) that need to be played.
+Link to a video resource (e.g. an mp4 or m3u8 file) which needs to be played.
 
 ### Autoplay
-When active, the video will automatically start playing when a new url has been specified.
+When active, the video will automatically start playing when an url has been specified.
 
 Note that e.g. the Chrome browser does not autoplay when the sound is on, because that can be very annoying for users.
 
@@ -37,17 +39,17 @@ When active, the controls will be displayed at the bottom of the video:
 ![image](https://github.com/user-attachments/assets/a0844ddc-58d2-4d78-944c-4e92e66f8ef5)
 
 ### Sound
-When active, the sound of the video will be playing.
+When active, the video will not be muted while playing.
 
 ### Hidden
 When this option is active, the video data won't be loaded when the video is not visible.  For example when we switch to another dashboard tabsheet.
 
 ### Intersection threshold
-Specify the percentage of the video that needs to be visible (in the browser viewport), otherwise the video won't play:
+Specify the percentage of the video that needs to be visible (in the browser viewport), otherwise the video player will stop loading data:
 
-![image](https://github.com/user-attachments/assets/a08de335-b33e-47e0-a9a4-8c09a53fc45b)
+![image](https://github.com/user-attachments/assets/85bfc61c-df78-4154-9206-851a50571708)
 
-When the video becomes (partly) hidden by scrolling, it is in most use cases useless to keep streaming video data.
+Because when the video becomes (partly) hidden by scrolling, it is in most use cases useless to keep streaming video data.
 
 ### Ready poster
 Image that will be shown inside the video player when the player has been initialized.  If no poster has been specified, the first frame of the video will be displayed.
