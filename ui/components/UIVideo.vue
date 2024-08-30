@@ -40,7 +40,7 @@ export default {
             hlsPlayer: null,
             // Status can be 'started', 'stopped', 'paused', 
             playerStatus: 'stopped',
-            errorOccured: false,
+            videoPlaybackProblem: false,
             intersectionObserver: null,
             isVideoIntersecting: false,
             fullScreenChangeEventHandler: null,
@@ -52,7 +52,7 @@ export default {
         // Don't use computed fields 'url' and autoplay to setup the video element automatically
         // via VueJs binding, because those need to be set programmatically via Hls.js.
         // ======================================================================================
-        //TODO???  ...mapState('data', ['messages', 'properties']),
+        //TODO is this required?  ...mapState('data', ['messages', 'properties']),
         controls () {
             // When the 'controls' property has value 'hide', the 'controls' attribute should be removed
             // from the video element.  In Vue 3 that can be accomplished by binding the attribute to null.
@@ -73,7 +73,7 @@ export default {
             }
         },
         poster () {
-            if (this.errorOccured === true) {
+            if (this.videoPlaybackProblem === true) {
                 return this.getProperty('errorPoster')
             }
             else {
@@ -87,7 +87,7 @@ export default {
         this.$socket.emit('widget-load', this.id)
     },
     mounted () {
-        // TODO geen messages opslaan
+        // TODO is it required to store client-side input messages for this node.  Perhaps only if they have a payload?
         this.$socket.on('widget-load:' + this.id, (msg) => {
             // load the latest message from the Node-RED datastore when this widget is loaded
             // storing it in our vuex store so that we have it saved as we navigate around
@@ -96,6 +96,11 @@ export default {
                 msg
             })
         })
+
+        // When no url has been specified at startup, then no video playback is possible
+        if (!this.getProperty('url')) {
+            this.videoPlaybackProblem = true
+        }
 
         // ===========================================================
         // SETUP THE VIDEO ELEMENT
@@ -106,34 +111,34 @@ export default {
         this.videoElement.onloadedmetadata = async event => {
             try {
                 if (this.getProperty('autoplay') !== false) {
-// TODO dit enkel doen indien geen hls.js
+// TODO hls.js has already (below) its own metadata load handler, so only do this here when not playing hls
                     await this.videoElement.play();
                 }
             }
             catch (err) {
-                console.log(`videoElement.play() - ${err.name} - ${err.message}`);
+                this.log('error', `videoElement.play() - ${err.name} - ${err.message}`);
             }
         }
 
         this.videoElement.onplaying = (event) => {
-            console.log('The video started playing')
+            this.log('info', 'The video started playing')
             this.playerStatus = 'started'
         }
 
         this.videoElement.onpause = (event) => {
-            console.log('The video has been paused')
+            this.log('info', 'The video has been paused')
             this.playerStatus = 'paused'
         }
 
         this.videoElement.onended = (event) => {
-            console.log('The video has been stopped')
+            this.log('info', 'The video has been stopped')
             this.playerStatus = 'stopped'
         }
 
         // Handle video element errors (invalid URL, failed network request, unsupported format, ...)
         this.videoElement.onerror = (event) => {
             // TODO Should we do the same error handling as like in the case of Hls.ErrorTypes.OTHER_ERROR below?
-            console.log(`Video element error (code ${this.videoElement.error.code}): ${this.videoElement.error.message}`)
+            this.log('error', `Video element error (code ${this.videoElement.error.code}): ${this.videoElement.error.message}`)
         }
 
         // ===========================================================
@@ -169,7 +174,7 @@ export default {
         }
         
         for (let presentationModeProperty of ['webkitPresentationMode', 'presentationMode', 'mozPresentationMode', 'msPresentationMode']) {
-            // TODO kunnen we videoElement gebruiken?
+            // TODO can we check if the property is inside VideoElement
             if (presentationModeProperty in HTMLVideoElement.prototype) {
                 this.presentationModeProperty = presentationModeProperty
                 break
@@ -177,7 +182,7 @@ export default {
         }
 
         for (let displayingFullscreenProperty of ['webkitDisplayingFullscreen', 'displayingFullscreen', 'mozDisplayingFullscreen', 'msDisplayingFullscreen']) {
-            // TODO kunnen we videoElement gebruiken?
+            // TODO can we check if the property is inside VideoElement
             if (displayingFullscreenProperty in HTMLVideoElement.prototype) {
                 this.displayingFullscreenProperty = displayingFullscreenProperty
                 break
@@ -196,29 +201,13 @@ export default {
         if (!this.nativeHlsSupported) {
             // Hls.js is only supported on platforms that have Media Source Extensions (MSE) enabled
             if (Hls.isSupported()) {
-                let hlsConfig = {}
-                // TODO use getProperty()
-                if (this.props.hlsConfig && this.props.hlsConfig !== '') {
-                    hlsConfig = JSON.parse(this.props.hlsConfig)
-                }
-
+                let hlsConfig = JSON.parse(this.getProperty('hlsConfig') || '{}')
                 this.hlsPlayer = new Hls(hlsConfig)
 
                 this.hlsPlayer.on(Hls.Events.ERROR, (event, data) => {
                     let errorType = data.type;
                     let errorDetails = data.details;
                     let errorFatal = data.fatal;
-
-                    // TODO dit deed Kevin niet, dus misschien overkill?
-                    this.send({
-                        payload: {
-                            errorType: data.type,
-                            errorDetails: data.details,
-                            errorFatal: data.fatal,
-                            errorMessage: data.error.message
-                        },
-                        topic: 'hls_error'
-                    })
 
                     switch (errorType) {
                         case Hls.ErrorTypes.NETWORK_ERROR:
@@ -229,15 +218,15 @@ export default {
                             break
                         case Hls.ErrorTypes.OTHER_ERROR:
                         default:
-                            console.log('Hls player error: ' + data.error.message)
+                            this.log('error', 'Hls player error: ' + data.error.message)
                             this.stopLoadingVideo()
-                            this.errorOccured = true
+                            this.videoPlaybackProblem = true
                     }
                 })
 
                 // After hls.loadSource() has been called, following event will be triggered
                 this.hlsPlayer.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-                    console.log("Manifest loaded, found " + data.levels.length + " quality level")
+                    this.log('error', 'Manifest loaded, found ' + data.levels.length + ' quality level')
 
                     if (this.getProperty('autoplay')) {
                         // When autoplay is required, we try to start the video.
@@ -246,15 +235,13 @@ export default {
                             this.videoElement.play()
                         }
                         catch (err) {
-                            // TODO send error output msg
-                            console.log('Cannot autoplay via hls.js: ' + err)
+                            this.log('error', 'Cannot autoplay via hls.js: ' + err)
                         }
                     }
                 })
             }
             else {
-                // TODO send error output msg
-                console.log('Browser does not support HLS')
+                this.log('error', 'Browser does not support HLS')
             }
         }
 
@@ -304,7 +291,7 @@ export default {
         this.startLoadingVideo()
     },
     unmounted () {
-        // TODO nog nodig????
+        // TODO is this still required?
         this.$socket?.off('widget-load:' + this.id)
         this.$socket?.off('msg-input:' + this.id)
 
@@ -325,7 +312,7 @@ export default {
 
         this.stopLoadingVideo()
 
-        this.errorOccured = false
+        this.videoPlaybackProblem = false
     },
     methods: {
         onDynamicProperties (msg) {
@@ -340,6 +327,10 @@ export default {
             this.updateDynamicProperty('sound', updates.sound)
             this.updateDynamicProperty('readyPoster', updates.readyPoster)
             this.updateDynamicProperty('errorPoster', updates.errorPoster)
+            this.updateDynamicProperty('unloadHiddenVideo', updates.unloadHiddenVideo)
+            this.updateDynamicProperty('intersectionThreshold', updates.intersectionThreshold)
+            this.updateDynamicProperty('logType', updates.logType)
+            this.updateDynamicProperty('hlsConfig', updates.hlsConfig)
         },
         send (msg) {
             this.$socket.emit('widget-action', this.id, msg)
@@ -347,15 +338,14 @@ export default {
         onInput (msg) {
             if (msg.payload === 'unload') {
                 this.stopLoadingVideo()
-                this.errorOccured = false
+                this.videoPlaybackProblem = false
             } else {
                 // The video might need to be (auto)played when a new url has been specified,
                 // or when a load request has been specified
                 if (msg.ui_update?.url || msg.payload === 'load') {
                     this.stopLoadingVideo()
-                    this.errorOccured = false
+                    this.videoPlaybackProblem = false
                     try {
-                        // TODO moeten we deze if niet moven naar de shouldstartLoadingVideo?
                         if (this.getProperty('unloadHiddenVideo')) {
                             // Via (observer and listener) events this node will automatically (un)load
                             // the video when required.  However we need to check the same conditions here,
@@ -365,9 +355,9 @@ export default {
                             this.startLoadingVideo()
                         }
                     } catch (err) {
-                        console.log('Error loading video: ', err)
+                        this.log('error', 'Error loading video: ' + err)
                         this.stopLoadingVideo()
-                        this.errorOccured = true
+                        this.videoPlaybackProblem = true
                     }
                 }
             }
@@ -378,7 +368,7 @@ export default {
                 this.startLoadingVideo()
             } else {
                 this.stopLoadingVideo()
-                //TODO setVideoPoster(false)
+                this.videoPlaybackProblem = false
             }
         },
         startLoadingVideo () {
@@ -397,7 +387,6 @@ export default {
                     this.videoElement.src = url
                 }
                 else {
-                // TODO of moeten we dit triggeren vanuit de videoElement.onloadedmetadata (bovenaan)
                     // Attach hls.js to the video element
                     this.hlsPlayer.attachMedia(this.videoElement)
 
@@ -407,11 +396,11 @@ export default {
                 }
             }
             else {
-                // Seems that a plain video (mp4, ...)  needs to be displayed
+                // Seems that a plain video (mp4, webm, ogg, ...)  needs to be displayed
                 this.videoElement.src = url
             }
 
-            console.log('Video loading has been started')
+            this.log('error', 'Video loading has been started')
 
             // The this.videoElement.play() is NOT executed here, but instead in the onMetaDataLoaded event above
         },
@@ -434,7 +423,7 @@ export default {
             this.videoElement.removeAttribute('src')
             this.videoElement.load()
 
-            console.log('Video loading has been stopped')
+            this.log('error', 'Video loading has been stopped')
         },
         shouldstartLoadingVideo () {
             const isDocumentVisible = (document.visibilityState === 'visible')
@@ -454,6 +443,19 @@ export default {
                                           (typeof this.presentationModeProperty !== 'undefined' && this.videoElement[this.presentationModeProperty] === 'picture-in-picture')
 
             return videoPictureInPicture === true || (isDocumentVisible === true && ((isDocumentFullscreen === false && this.isVideoIntersecting === true) || (isDocumentFullscreen === true && isVideoFullscreen === true)))
+        },
+        log (topic, text) {
+            let logType = this.getProperty('logType')
+            switch(logType) {
+                case 'console':
+                    console.log(text)
+                    break
+                case 'msg':
+                    this.send({ payload: text, topic: topic })
+                    break
+                case 'none':
+                    // Do nothing
+            }
         }
     }
 }

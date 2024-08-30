@@ -14,6 +14,7 @@ module.exports = function (RED) {
         const beforeSend = async function (msg) {
             // dynamic properties
             const updates = msg.ui_update
+            // Store all the dynamic properties, to make sure their values are still available at browser refresh
             if (updates) {
                 if (typeof updates.url !== 'undefined') {
                     base.stores.state.set(group.getBase(), node, msg, 'url', updates.url)
@@ -34,6 +35,25 @@ module.exports = function (RED) {
                 }
                 if (typeof updates.errorPoster !== 'undefined') {
                     base.stores.state.set(group.getBase(), node, msg, 'errorPoster', updates.errorPoster)
+                }
+                if (typeof updates.errorPoster !== 'undefined') {
+                    base.stores.state.set(group.getBase(), node, msg, 'errorPoster', updates.errorPoster)
+                }
+                if (typeof updates.unloadHiddenVideo !== 'undefined') {
+// TODO check whether the value is 'on' or 'off'
+                    base.stores.state.set(group.getBase(), node, msg, 'unloadHiddenVideo', updates.unloadHiddenVideo)
+                }
+                if (typeof updates.intersectionThreshold !== 'undefined') {
+// TODO check whether the value is a number between 0 and 100
+                    base.stores.state.set(group.getBase(), node, msg, 'intersectionThreshold', updates.intersectionThreshold)
+                }
+                if (typeof updates.logType !== 'undefined') {
+// TODO check whether the value is 'none', 'console' or 'msg'
+                    base.stores.state.set(group.getBase(), node, msg, 'logType', updates.logType)
+                }
+                if (typeof updates.hlsConfig !== 'undefined') {
+// TODO check whether the value is a valid js object
+                    base.stores.state.set(group.getBase(), node, msg, 'hlsConfig', updates.hlsConfig)
                 }
             }
 

@@ -3,7 +3,7 @@
   try {
     if (typeof document != "undefined") {
       var elementStyle = document.createElement("style");
-      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-f3afd98a] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
+      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-6fedb232] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
       document.head.appendChild(elementStyle);
     }
   } catch (e) {
@@ -25517,7 +25517,7 @@
         hlsPlayer: null,
         // Status can be 'started', 'stopped', 'paused', 
         playerStatus: "stopped",
-        errorOccured: false,
+        videoPlaybackProblem: false,
         intersectionObserver: null,
         isVideoIntersecting: false,
         fullScreenChangeEventHandler: null,
@@ -25529,7 +25529,7 @@
       // Don't use computed fields 'url' and autoplay to setup the video element automatically
       // via VueJs binding, because those need to be set programmatically via Hls.js.
       // ======================================================================================
-      //TODO???  ...mapState('data', ['messages', 'properties']),
+      //TODO is this required?  ...mapState('data', ['messages', 'properties']),
       controls() {
         if (this.getProperty("controls") == "show") {
           return true;
@@ -25545,7 +25545,7 @@
         }
       },
       poster() {
-        if (this.errorOccured === true) {
+        if (this.videoPlaybackProblem === true) {
           return this.getProperty("errorPoster");
         } else {
           return this.getProperty("readyPoster");
@@ -25563,6 +25563,9 @@
           msg
         });
       });
+      if (!this.getProperty("url")) {
+        this.videoPlaybackProblem = true;
+      }
       this.videoElement = this.$refs.video;
       this.videoElement.onloadedmetadata = async (event) => {
         try {
@@ -25570,23 +25573,23 @@
             await this.videoElement.play();
           }
         } catch (err) {
-          console.log(`videoElement.play() - ${err.name} - ${err.message}`);
+          this.log("error", `videoElement.play() - ${err.name} - ${err.message}`);
         }
       };
       this.videoElement.onplaying = (event) => {
-        console.log("The video started playing");
+        this.log("info", "The video started playing");
         this.playerStatus = "started";
       };
       this.videoElement.onpause = (event) => {
-        console.log("The video has been paused");
+        this.log("info", "The video has been paused");
         this.playerStatus = "paused";
       };
       this.videoElement.onended = (event) => {
-        console.log("The video has been stopped");
+        this.log("info", "The video has been stopped");
         this.playerStatus = "stopped";
       };
       this.videoElement.onerror = (event) => {
-        console.log(`Video element error (code ${this.videoElement.error.code}): ${this.videoElement.error.message}`);
+        this.log("error", `Video element error (code ${this.videoElement.error.code}): ${this.videoElement.error.message}`);
       };
       for (let pictureInPictureElementProperty of ["webkitPictureInPictureElement", "pictureInPictureElement", "mozPictureInPictureElement", "msPictureInPictureElement"]) {
         if (pictureInPictureElementProperty in document) {
@@ -25627,24 +25630,12 @@
       this.nativeHlsSupported = this.videoElement.canPlayType("application/vnd.apple.mpegurl");
       if (!this.nativeHlsSupported) {
         if (Hls.isSupported()) {
-          let hlsConfig = {};
-          if (this.props.hlsConfig && this.props.hlsConfig !== "") {
-            hlsConfig = JSON.parse(this.props.hlsConfig);
-          }
+          let hlsConfig = JSON.parse(this.getProperty("hlsConfig") || "{}");
           this.hlsPlayer = new Hls(hlsConfig);
           this.hlsPlayer.on(Hls.Events.ERROR, (event, data) => {
             let errorType = data.type;
             data.details;
             data.fatal;
-            this.send({
-              payload: {
-                errorType: data.type,
-                errorDetails: data.details,
-                errorFatal: data.fatal,
-                errorMessage: data.error.message
-              },
-              topic: "hls_error"
-            });
             switch (errorType) {
               case Hls.ErrorTypes.NETWORK_ERROR:
                 hlsJsPlayer.startLoad();
@@ -25654,23 +25645,23 @@
                 break;
               case Hls.ErrorTypes.OTHER_ERROR:
               default:
-                console.log("Hls player error: " + data.error.message);
+                this.log("error", "Hls player error: " + data.error.message);
                 this.stopLoadingVideo();
-                this.errorOccured = true;
+                this.videoPlaybackProblem = true;
             }
           });
           this.hlsPlayer.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-            console.log("Manifest loaded, found " + data.levels.length + " quality level");
+            this.log("error", "Manifest loaded, found " + data.levels.length + " quality level");
             if (this.getProperty("autoplay")) {
               try {
                 this.videoElement.play();
               } catch (err) {
-                console.log("Cannot autoplay via hls.js: " + err);
+                this.log("error", "Cannot autoplay via hls.js: " + err);
               }
             }
           });
         } else {
-          console.log("Browser does not support HLS");
+          this.log("error", "Browser does not support HLS");
         }
       }
       const handleIntersectionChange = (data) => {
@@ -25716,7 +25707,7 @@
       this.videoElement.onpause = void 0;
       this.videoElement.onended = void 0;
       this.stopLoadingVideo();
-      this.errorOccured = false;
+      this.videoPlaybackProblem = false;
     },
     methods: {
       onDynamicProperties(msg) {
@@ -25730,6 +25721,10 @@
         this.updateDynamicProperty("sound", updates.sound);
         this.updateDynamicProperty("readyPoster", updates.readyPoster);
         this.updateDynamicProperty("errorPoster", updates.errorPoster);
+        this.updateDynamicProperty("unloadHiddenVideo", updates.unloadHiddenVideo);
+        this.updateDynamicProperty("intersectionThreshold", updates.intersectionThreshold);
+        this.updateDynamicProperty("logType", updates.logType);
+        this.updateDynamicProperty("hlsConfig", updates.hlsConfig);
       },
       send(msg) {
         this.$socket.emit("widget-action", this.id, msg);
@@ -25738,11 +25733,11 @@
         var _a;
         if (msg.payload === "unload") {
           this.stopLoadingVideo();
-          this.errorOccured = false;
+          this.videoPlaybackProblem = false;
         } else {
           if (((_a = msg.ui_update) == null ? void 0 : _a.url) || msg.payload === "load") {
             this.stopLoadingVideo();
-            this.errorOccured = false;
+            this.videoPlaybackProblem = false;
             try {
               if (this.getProperty("unloadHiddenVideo")) {
                 this.toggleVideoLoading();
@@ -25750,9 +25745,9 @@
                 this.startLoadingVideo();
               }
             } catch (err) {
-              console.log("Error loading video: ", err);
+              this.log("error", "Error loading video: " + err);
               this.stopLoadingVideo();
-              this.errorOccured = true;
+              this.videoPlaybackProblem = true;
             }
           }
         }
@@ -25763,6 +25758,7 @@
           this.startLoadingVideo();
         } else {
           this.stopLoadingVideo();
+          this.videoPlaybackProblem = false;
         }
       },
       startLoadingVideo() {
@@ -25780,7 +25776,7 @@
         } else {
           this.videoElement.src = url;
         }
-        console.log("Video loading has been started");
+        this.log("error", "Video loading has been started");
       },
       stopLoadingVideo() {
         if (this.hlsPlayer.media) {
@@ -25790,7 +25786,7 @@
         this.videoElement.pause();
         this.videoElement.removeAttribute("src");
         this.videoElement.load();
-        console.log("Video loading has been stopped");
+        this.log("error", "Video loading has been stopped");
       },
       shouldstartLoadingVideo() {
         const isDocumentVisible = document.visibilityState === "visible";
@@ -25805,6 +25801,17 @@
         }
         const videoPictureInPicture = typeof this.pictureInPictureElementProperty !== "undefined" && document[this.pictureInPictureElementProperty] === this.videoElement || typeof this.presentationModeProperty !== "undefined" && this.videoElement[this.presentationModeProperty] === "picture-in-picture";
         return videoPictureInPicture === true || isDocumentVisible === true && (isDocumentFullscreen === false && this.isVideoIntersecting === true || isDocumentFullscreen === true && isVideoFullscreen === true);
+      },
+      log(topic, text) {
+        let logType = this.getProperty("logType");
+        switch (logType) {
+          case "console":
+            console.log(text);
+            break;
+          case "msg":
+            this.send({ payload: text, topic });
+            break;
+        }
       }
     }
   };
@@ -25825,7 +25832,7 @@
       }, null, 8, _hoisted_2)
     ]);
   }
-  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-f3afd98a"]]);
+  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-6fedb232"]]);
   exports2.UIVideo = UIVideo;
   Object.defineProperty(exports2, Symbol.toStringTag, { value: "Module" });
 });

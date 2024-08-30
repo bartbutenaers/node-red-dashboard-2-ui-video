@@ -20,6 +20,8 @@
         <dd>Whether the video should stop loading when hidden (e.g. when switching to another dashboard tabsheet).</dd>
         <dt>Intersection <span class="property-type">number</span></dt>
         <dd>The percentage of the video that needs to be visible to start loading.</dd>
+        <dt>Log type <span class="property-type">string</span></dt>
+        <dd>The type of log: in the browser console log, as output messages or no logging.</dd> 
         <dt>Ready poster <span class="property-type">number</span></dt>
         <dd>The image that will be showed inside the video player when the video is ready for playback.</dd>
         <dt>Error poster <span class="property-type">number</span></dt>
@@ -76,6 +78,17 @@
     <dl class="message-properties">
         <dt class="optional">intersectionThreshold<span class="property-type">number</span></dt>
         <dd>Override the percentage that will be used to determine whether a video is hidden or not.</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">logType<span class="property-type">string</span></dt>
+        <dd>
+            Override behaviour of logging:
+            <ul>
+                <li><code>none</code>: no logging</li>
+                <li><code>console</code>: browser console log</li>
+                <li><code>msg</code>: output messages</li>
+            </ul>
+        </dd>
     </dl>
     <dl class="message-properties">
         <dt class="optional">readyPoster<span class="property-type">string</span></dt>
