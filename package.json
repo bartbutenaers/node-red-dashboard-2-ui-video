@@ -20,8 +20,10 @@
         "name": "Bart Butenaers",
         "url": "https://github.com/bartbutenaers"
     },
-    "contributors": [
-    ],
+    "contributors": [{
+        "name": "Kevin Godell",
+        "url": "https://github.com/kevinGodell"
+    }],
     "exports": {
         "import": "./resources/ui-video.esm.js",
         "require": "./resources/ui-video.umd.js"
