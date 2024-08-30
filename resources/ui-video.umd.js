@@ -3,7 +3,7 @@
   try {
     if (typeof document != "undefined") {
       var elementStyle = document.createElement("style");
-      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-80a702e3] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
+      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-f3afd98a] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
       document.head.appendChild(elementStyle);
     }
   } catch (e) {
@@ -25680,7 +25680,8 @@
         }
       };
       this.intersectionObserver = new IntersectionObserver(handleIntersectionChange, {
-        root: document.querySelector("section.ng-scope") || null,
+        root: null,
+        // A null root means intersections with the browser viewport.  TODO any improvement possible?
         rootMargin: "0px",
         // The threshold is a value between 0 and 1 (while the value on the config screen is a percentage)
         threshold: this.getProperty("intersectionThreshold") / 100
@@ -25824,7 +25825,7 @@
       }, null, 8, _hoisted_2)
     ]);
   }
-  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-80a702e3"]]);
+  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-f3afd98a"]]);
   exports2.UIVideo = UIVideo;
   Object.defineProperty(exports2, Symbol.toStringTag, { value: "Module" });
 });

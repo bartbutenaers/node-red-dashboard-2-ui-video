@@ -1,3 +1,92 @@
 <script type="text/html" data-help-name="ui-video">
-    <p>In-Editor help text will go here.</p>
+    <p>
+        A Node-RED node for playing video in dashboard D2.
+    </p>
+    <p>
+        This node will play the specified video url inside the dashboard.  The url can point to an MP4 file, an m3u8 playlist, ...  See the <a target="_blank" href="https://github.com/bartbutenaers/node-red-dashboard-2-ui-video">Github</a> repository for more information!.
+    </p>
+    <p>
+        Each received <code>msg.payload</code> with the value <code>"load"</code> or <code>"unload"</code> can be used to (un)load the video.
+    </p>
+    <h3>Properties</h3>
+    <dl class="message-properties">
+        <dt>Url <span class="property-type">string</span></dt>
+        <dd>The url of the video that needs to be played.</dd>
+        <dt>Autoplay <span class="property-type">string</span></dt>
+        <dd>Whether the specified video should start playing automatically or not.</dd>
+        <dt>Controls <span class="property-type">string</span></dt>
+        <dd>Whether the sound for the specified video should be on or off.</dd>
+        <dt>Hidden <span class="property-type">string</span></dt>
+        <dd>Whether the video should stop loading when hidden (e.g. when switching to another dashboard tabsheet).</dd>
+        <dt>Intersection <span class="property-type">number</span></dt>
+        <dd>The percentage of the video that needs to be visible to start loading.</dd>
+        <dt>Ready poster <span class="property-type">number</span></dt>
+        <dd>The image that will be showed inside the video player when the video is ready for playback.</dd>
+        <dt>Error poster <span class="property-type">number</span></dt>
+        <dd>The image that will be showed inside the video player when the video cannot be played due to a problem.</dd>
+        <dt>HLS config <span class="property-type">string</span></dt>
+        <dd>The configuration (in json format) that will be passed to the HLS.js player.</dd>
+    </dl>
+    <h3>Dynamic Properties (Inputs)</h3>
+    <p>Any of the following can be appended to a <code>msg.ui_update</code> in order to override or set properties on this node at runtime.</p>
+    <dl class="message-properties">
+        <dt class="optional">url<span class="property-type">string</span></dt>
+        <dd>Override the current video url.</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">autoplay<span class="property-type">string</span></dt>
+        <dd>
+            Override the autoplay behaviour:
+            <ul>
+                <li><code>on</code></li>
+                <li><code>off</code></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">controls<span class="property-type">string</span></dt>
+        <dd>
+            Override the visibility of the controls:
+            <ul>
+                <li><code>show</code></li>
+                <li><code>hide</code></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">sound<span class="property-type">string</span></dt>
+        <dd>
+            Override the audibility of the sound:
+            <ul>
+                <li><code>on</code></li>
+                <li><code>off</code></li>
+            </ul>
+        </dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">unloadHiddenVideo<span class="property-type">string</span></dt>
+        <dd>
+            Override behaviour to unload hidden videos:
+            <ul>
+                <li><code>on</code>: unload hidden videos</li>
+                <li><code>off</code>: keep loading hidden video</li>
+            </ul>
+        </dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">intersectionThreshold<span class="property-type">number</span></dt>
+        <dd>Override the percentage that will be used to determine whether a video is hidden or not.</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">readyPoster<span class="property-type">string</span></dt>
+        <dd>Override the ready poster image.</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">errorPoster<span class="property-type">string</span></dt>
+        <dd>Override the error poster image.</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">hlsConfig<span class="property-type">json</span></dt>
+        <dd>Override the hls configuration.</dd>
+    </dl>
 </script>

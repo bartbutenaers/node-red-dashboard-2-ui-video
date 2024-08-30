@@ -26,7 +26,7 @@
             intersectionThreshold: { value: 10 },
             readyPoster: { value: '' },
             errorPoster: { value: '' },
-            videoConfig: { value: JSON.stringify({
+            hlsConfig: { value: JSON.stringify({
                 liveDurationInfinity: true,
                 liveBackBufferLength: 5,
                 maxBufferLength: 10,
@@ -80,8 +80,8 @@ debugger
                 label: 'General'
             })
             node.tabs.addTab({
-                id: 'node-video-tabsheet-video-config',
-                label: 'video config'
+                id: 'node-video-tabsheet-hls-config',
+                label: 'HLS config'
             })
         },
         oneditsave: function() {
@@ -157,10 +157,10 @@ debugger
                 <input type="text" id="node-input-errorPoster" />
             </div>
         </div>
-        <div id="node-video-tabsheet-video-config" style="position: relative; text-align: center; margin-top: 30px;">
+        <div id="node-video-tabsheet-hls-config" style="position: relative; text-align: center; margin-top: 30px;">
             <div class="form-row">
-                <label for="node-input-videoConfig"><i class="fa fa-cogs"></i> Config</label>
-                <input type="text" id="node-input-videoConfig" />
+                <label for="node-input-hlsConfig"><i class="fa fa-cogs"></i> Config</label>
+                <input type="text" id="node-input-hlsConfig" />
             </div>
         </div>
     </div>
