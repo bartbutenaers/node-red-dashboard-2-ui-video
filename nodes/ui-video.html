@@ -27,6 +27,7 @@
             readyPoster: { value: '' },
             errorPoster: { value: '' },
             logType: { value: 'none' },
+            hlsLibrary: { value: 'native' },
             hlsConfig: { value: JSON.stringify({
                 liveDurationInfinity: true,
                 liveBackBufferLength: 5,
@@ -50,7 +51,7 @@
                 height: '#node-input-height',
                 group: '#node-input-group'
             })
-debugger
+
             $('#node-input-videoConfig').typedInput({
                 default: 'json',
                 types: ['json']
@@ -102,13 +103,13 @@ debugger
 
             // The getValue function returns a json string
             node.hlsConfig = node.hlsConfigEditor.getValue() || '{}'
-debugger
+
             node.hlsConfigEditor.destroy()
             delete node.hlsConfigEditor
         },
         oneditcancel: function() {
             let node = this
-debugger
+
             node.hlsConfigEditor.destroy()
             delete node.hlsConfigEditor
         }
@@ -170,6 +171,10 @@ debugger
                 </select>
             </div>
             <div class="form-row">
+                <label for="node-input-intersectionThreshold"><i class="fa fa-window-restore"></i> Intersection</label>
+                <input type="number" id="node-input-intersectionThreshold" min="0" max="100" step="1">
+            </div>
+            <div class="form-row">
                 <label for="node-input-logType"><i class="fa fa-file-text-o"></i> Log type</label>
                 <select id="node-input-logType" style="width:70%;">
                     <option value="none">None</option>
@@ -178,8 +183,11 @@ debugger
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-input-intersectionThreshold"><i class="fa fa-window-restore"></i> Intersection</label>
-                <input type="number" id="node-input-intersectionThreshold" min="0" max="100" step="1">
+                <label for="node-input-hlsLibrary"><i class="fa fa-bars"></i> Hls</label>
+                <select id="node-input-hlsLibrary" style="width:70%;">
+                    <option value="native">Use native Hls</option>
+                    <option value="hlsjs">Use Hls.js</option>
+                </select>
             </div>
             <div class="form-row">
                 <label for="node-input-readyPoster"><i class="fa fa-file-image-o"></i> Ready poster</label>

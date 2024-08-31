@@ -20,6 +20,8 @@
         <dd>Whether the video should stop loading when hidden (e.g. when switching to another dashboard tabsheet).</dd>
         <dt>Intersection <span class="property-type">number</span></dt>
         <dd>The percentage of the video that needs to be visible to start loading.</dd>
+        <dt>Hls library <span class="property-type">string</span></dt>
+        <dd>Whether m3u8 playlists should be played with native Hls (if available), or always with Hls.js.</dd>
         <dt>Log type <span class="property-type">string</span></dt>
         <dd>The type of log: in the browser console log, as output messages or no logging.</dd> 
         <dt>Ready poster <span class="property-type">number</span></dt>
@@ -78,6 +80,16 @@
     <dl class="message-properties">
         <dt class="optional">intersectionThreshold<span class="property-type">number</span></dt>
         <dd>Override the percentage that will be used to determine whether a video is hidden or not.</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">hlsLibrary<span class="property-type">string</span></dt>
+        <dd>
+            Override the selected Hls library:
+            <ul>
+                <li><code>native</code>: use native Hls (if available)</li>
+                <li><code>hlsjs</code>: always use Hls.js</li>
+            </ul>
+        </dd>
     </dl>
     <dl class="message-properties">
         <dt class="optional">logType<span class="property-type">string</span></dt>

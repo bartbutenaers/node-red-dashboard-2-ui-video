@@ -196,9 +196,9 @@ export default {
         // When the browser has built-in HLS support, it can play an HLS manifest (i.e. .m3u8 URL) directly
         this.nativeHlsSupported = this.videoElement.canPlayType('application/vnd.apple.mpegurl')
 
-        // TODO add option to config screen to allow hls.js to override native hls
-        // It is only needed to setup the Hls.js player, if no native Hls is supported
-        if (!this.nativeHlsSupported) {
+        // It is only needed to setup the Hls.js player, if no native Hls is supported.
+        // Or when the user has specified that Hls.js is preferred above native Hls.
+        if (!this.nativeHlsSupported || this.getProperty('hlsLibrary') === 'hlsjs') {
             // Hls.js is only supported on platforms that have Media Source Extensions (MSE) enabled
             if (Hls.isSupported()) {
                 let hlsConfig = JSON.parse(this.getProperty('hlsConfig') || '{}')
@@ -329,6 +329,7 @@ export default {
             this.updateDynamicProperty('errorPoster', updates.errorPoster)
             this.updateDynamicProperty('unloadHiddenVideo', updates.unloadHiddenVideo)
             this.updateDynamicProperty('intersectionThreshold', updates.intersectionThreshold)
+            this.updateDynamicProperty('hlsLibrary', updates.hlsLibrary)
             this.updateDynamicProperty('logType', updates.logType)
             this.updateDynamicProperty('hlsConfig', updates.hlsConfig)
         },
@@ -382,7 +383,7 @@ export default {
             // Determine on the url how the video should be played
             if (url.endsWith('.m3u8')) {
                 // TODO currently we assume that all m3u8 playlist files are only used by HLS
-                if (this.nativeHlsSupported) {
+                if (this.nativeHlsSupported && this.getProperty('hlsLibrary') === 'native') {
                     // When the browser supports native HLS, the url can simply be passed to the video element
                     this.videoElement.src = url
                 }

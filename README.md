@@ -27,35 +27,58 @@ The following example flow demonstrates how to play mp4 and hls, and how to cont
 
 ### Url
 Link to a video resource (e.g. an mp4 or m3u8 file) which needs to be played.
+This property can be overwritten dynamically via `msg.ui_update.url`.
 
 ### Autoplay
 When active, the video will automatically start playing when an url has been specified.
+This property can be overwritten dynamically via `msg.ui_update.autoplay` (with possible values *'on'* and *'off'*).
 
 Note that e.g. the Chrome browser does not autoplay when the sound is on, because that can be very annoying for users.
 
 ### Controls
 When active, the controls will be displayed at the bottom of the video:
+This property can be overwritten dynamically via `msg.ui_update.controls` (with possible values *'show'* and *'hide'*).
 
 ![image](https://github.com/user-attachments/assets/a0844ddc-58d2-4d78-944c-4e92e66f8ef5)
 
 ### Sound
 When active, the video will not be muted while playing.
+This property can be overwritten dynamically via `msg.ui_update.sound` (with possible values *'on'* and *'off'*).
 
 ### Hidden
 When this option is active, the video data won't be loaded when the video is not visible.  For example when we switch to another dashboard tabsheet.
+This property can be overwritten dynamically via `msg.ui_update.unloadHiddenVideo` (with possible values *'on'* and *'off'*).
 
 ### Intersection threshold
 Specify the percentage of the video that needs to be visible (in the browser viewport), otherwise the video player will stop loading data:
+This property can be overwritten dynamically via `msg.ui_update.intersectionThreshold` (with possible values numbers between 0 and 100 percent).
 
 ![image](https://github.com/user-attachments/assets/85bfc61c-df78-4154-9206-851a50571708)
 
 Because when the video becomes (partly) hidden by scrolling, it is in most use cases useless to keep streaming video data.
 
+### Hls library
+Specify which Hls library should be used to play m3u8 playlists:
++ *Use native Hls*: use native Hls when offered by the browser.  Note that not much browser support this.
++ *Always use Hls.js*: always use the Hls.js library, even when native Hls is supported.
+
+This property can be overwritten dynamically via `msg.ui_update.hlsLibrary` (with possible values *'native'* and *'hlsjs'*).
+
+### Log type
+Specify how the ui node should log his information for troubleshooting:
++ *No logging*: no log entries will be written.
++ *Browser console log*: all log entries will be written to the browser console log, where the dashboard is running.
++ *Output messages*: all log entries will be send as messages to the output of this node.  That can be used for troubleshooting e.g. on mobile phones, where the browser console log is difficult to access.
+
+This property can be overwritten dynamically via `msg.ui_update.logType` (with possible values *'none'*, *'console'* and *'msg'*).
+
 ### Ready poster
 Image that will be shown inside the video player when the player has been initialized.  If no poster has been specified, the first frame of the video will be displayed.
+This property can be overwritten dynamically via `msg.ui_update.readyPoster`.
 
 ### Error poster
 Image that will be shown inside the video player after a fatal error.  If no poster has been specified, the first frame of the video will be displayed.
+This property can be overwritten dynamically via `msg.ui_update.errorPoster`.
 
 ### Config
 TODO

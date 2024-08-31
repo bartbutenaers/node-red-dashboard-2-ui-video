@@ -3,7 +3,7 @@
   try {
     if (typeof document != "undefined") {
       var elementStyle = document.createElement("style");
-      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-6fedb232] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
+      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-35e6a8eb] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
       document.head.appendChild(elementStyle);
     }
   } catch (e) {
@@ -25628,7 +25628,7 @@
         }
       }
       this.nativeHlsSupported = this.videoElement.canPlayType("application/vnd.apple.mpegurl");
-      if (!this.nativeHlsSupported) {
+      if (!this.nativeHlsSupported || this.getProperty("hlsLibrary") === "hlsjs") {
         if (Hls.isSupported()) {
           let hlsConfig = JSON.parse(this.getProperty("hlsConfig") || "{}");
           this.hlsPlayer = new Hls(hlsConfig);
@@ -25723,6 +25723,7 @@
         this.updateDynamicProperty("errorPoster", updates.errorPoster);
         this.updateDynamicProperty("unloadHiddenVideo", updates.unloadHiddenVideo);
         this.updateDynamicProperty("intersectionThreshold", updates.intersectionThreshold);
+        this.updateDynamicProperty("hlsLibrary", updates.hlsLibrary);
         this.updateDynamicProperty("logType", updates.logType);
         this.updateDynamicProperty("hlsConfig", updates.hlsConfig);
       },
@@ -25767,7 +25768,7 @@
           return;
         }
         if (url.endsWith(".m3u8")) {
-          if (this.nativeHlsSupported) {
+          if (this.nativeHlsSupported && this.getProperty("hlsLibrary") === "native") {
             this.videoElement.src = url;
           } else {
             this.hlsPlayer.attachMedia(this.videoElement);
@@ -25832,7 +25833,7 @@
       }, null, 8, _hoisted_2)
     ]);
   }
-  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-6fedb232"]]);
+  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-35e6a8eb"]]);
   exports2.UIVideo = UIVideo;
   Object.defineProperty(exports2, Symbol.toStringTag, { value: "Module" });
 });

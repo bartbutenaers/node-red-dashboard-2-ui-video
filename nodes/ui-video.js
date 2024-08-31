@@ -36,9 +36,6 @@ module.exports = function (RED) {
                 if (typeof updates.errorPoster !== 'undefined') {
                     base.stores.state.set(group.getBase(), node, msg, 'errorPoster', updates.errorPoster)
                 }
-                if (typeof updates.errorPoster !== 'undefined') {
-                    base.stores.state.set(group.getBase(), node, msg, 'errorPoster', updates.errorPoster)
-                }
                 if (typeof updates.unloadHiddenVideo !== 'undefined') {
 // TODO check whether the value is 'on' or 'off'
                     base.stores.state.set(group.getBase(), node, msg, 'unloadHiddenVideo', updates.unloadHiddenVideo)
@@ -46,6 +43,10 @@ module.exports = function (RED) {
                 if (typeof updates.intersectionThreshold !== 'undefined') {
 // TODO check whether the value is a number between 0 and 100
                     base.stores.state.set(group.getBase(), node, msg, 'intersectionThreshold', updates.intersectionThreshold)
+                }
+                if (typeof updates.hlsLibrary !== 'undefined') {
+// TODO check whether the value is 'native' or 'hlsjs'
+                    base.stores.state.set(group.getBase(), node, msg, 'hlsLibrary', updates.hlsLibrary)
                 }
                 if (typeof updates.logType !== 'undefined') {
 // TODO check whether the value is 'none', 'console' or 'msg'
