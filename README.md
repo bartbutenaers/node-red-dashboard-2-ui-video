@@ -73,11 +73,13 @@ Specify how the ui node should log his information for troubleshooting:
 This property can be overwritten dynamically via `msg.ui_update.logType` (with possible values *'none'*, *'console'* and *'msg'*).
 
 ### Ready poster
-Image that will be shown inside the video player when the player has been initialized.  If no poster has been specified, the first frame of the video will be displayed.
+Image that will be shown inside the video player when the player has been initialized.  If no poster has been specified, the first frame of the video will be displayed.  See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Introduction-to-posters) for more information.
+
 This property can be overwritten dynamically via `msg.ui_update.readyPoster`.
 
 ### Error poster
-Image that will be shown inside the video player after a fatal error.  If no poster has been specified, the first frame of the video will be displayed.
+Image that will be shown inside the video player after a fatal error.  If no poster has been specified, the first frame of the video will be displayed.  See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Introduction-to-posters) for more information.
+
 This property can be overwritten dynamically via `msg.ui_update.errorPoster`.
 
 ### Config
