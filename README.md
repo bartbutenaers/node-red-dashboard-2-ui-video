@@ -14,7 +14,7 @@ npm install bartbutenaers/node-red-contrib-2-ui-video
 ## Node Usage
 This node allows to play:
 + The common video and audio [formats](https://videojs.com/html5-video-support/), like e.g. H264 which is supported by all major browsers.
-+ Http Live Streaming (HLS) streaming.  Some browsers offer [native](https://caniuse.com/?search=hls) HLS out of the box, and otherwise this node will support it via the [Hls.js](https://github.com/video-dev/hls.js/blob/master/README.md) library.  This includes the playback of fragmented mp4 files (fmp4) via m3u8 playlists.
++ Http Live Streaming (HLS) streaming.  Some browsers offer [native](https://caniuse.com/?search=hls) HLS out of the box, and otherwise this node will support it via the [Hls.js](https://github.com/video-dev/hls.js/blob/master/README.md) library.  This includes the playback of fragmented mp4 files (fmp4) via m3u8 playlists.  See [this](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/HLS-introduction) wiki page for more information.
 
 The following example flow demonstrates how to play mp4 and hls, and how to control the widget via input messages:
 
@@ -49,6 +49,8 @@ This property can be overwritten dynamically via `msg.ui_update.sound` (with pos
 When this option is active, the video data won't be loaded when the video is not visible.  For example when we switch to another dashboard tabsheet.
 This property can be overwritten dynamically via `msg.ui_update.unloadHiddenVideo` (with possible values *'on'* and *'off'*).
 
+This is explained further in [this](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Unload-hidden-video) wiki page.
+
 ### Intersection threshold
 Specify the percentage of the video that needs to be visible (in the browser viewport), otherwise the video player will stop loading data:
 This property can be overwritten dynamically via `msg.ui_update.intersectionThreshold` (with possible values numbers between 0 and 100 percent).
@@ -73,11 +75,13 @@ Specify how the ui node should log his information for troubleshooting:
 This property can be overwritten dynamically via `msg.ui_update.logType` (with possible values *'none'*, *'console'* and *'msg'*).
 
 ### Ready poster
-Image that will be shown inside the video player when the player has been initialized.  If no poster has been specified, the first frame of the video will be displayed.
+Image that will be shown inside the video player when the player has been initialized.  If no poster has been specified, the first frame of the video will be displayed.  See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Introduction-to-posters) for more information.
+
 This property can be overwritten dynamically via `msg.ui_update.readyPoster`.
 
 ### Error poster
-Image that will be shown inside the video player after a fatal error.  If no poster has been specified, the first frame of the video will be displayed.
+Image that will be shown inside the video player after a fatal error.  If no poster has been specified, the first frame of the video will be displayed.  See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Introduction-to-posters) for more information.
+
 This property can be overwritten dynamically via `msg.ui_update.errorPoster`.
 
 ### Resize
