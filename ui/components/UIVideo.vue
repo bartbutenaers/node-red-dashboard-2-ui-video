@@ -10,6 +10,7 @@
             ref="video"
             :controls="controls"
             :muted="muted"
+            :style="{ objectFit: objectFit }"
         />
     </div>
 </template>
@@ -78,6 +79,22 @@ export default {
             }
             else {
                 return this.getProperty('readyPoster')
+            }
+        },
+        objectFit () {
+            const resizing = this.getProperty('resizing')
+
+            // Resize the video by setting the CSS object-fit attribute.
+            // See image example at https://tympanus.net/codrops/css_reference/object-fit/
+            switch (resizing) {
+                case 'fit_longest':
+                    return 'contain'
+                case 'fit_shortest':
+                    return 'cover'
+                case 'fit_both':
+                    return 'fill'
+                case 'none':
+                    return 'none'
             }
         }
     },
@@ -331,6 +348,7 @@ export default {
             this.updateDynamicProperty('intersectionThreshold', updates.intersectionThreshold)
             this.updateDynamicProperty('hlsLibrary', updates.hlsLibrary)
             this.updateDynamicProperty('logType', updates.logType)
+            this.updateDynamicProperty('resizing', updates.resizing)
             this.updateDynamicProperty('hlsConfig', updates.hlsConfig)
         },
         send (msg) {

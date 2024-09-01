@@ -28,6 +28,7 @@
             errorPoster: { value: '' },
             logType: { value: 'none' },
             hlsLibrary: { value: 'native' },
+            resizing: { value: 'fit_longest' },
             hlsConfig: { value: JSON.stringify({
                 liveDurationInfinity: true,
                 liveBackBufferLength: 5,
@@ -196,6 +197,15 @@
             <div class="form-row">
                 <label for="node-input-errorPoster"><i class="fa fa-file-image-o"></i> Error poster</label>
                 <input type="text" id="node-input-errorPoster" />
+            </div>
+            <div class="form-row">
+                <label for="node-input-resizing"><i class="fa fa-arrows-alt"></i> Resize</label>
+                <select id="node-input-resizing">
+                    <option value="none">None</option>          
+                    <option value="fit_longest">Fit longest dimension</option>
+                    <option value="fit_shortest">Fit shortest dimension</option>
+                    <option value="fit_both">Fit both dimensions</option>
+                </select>
             </div>
         </div>
         <div id="node-video-tabsheet-hls-config" style="margin-top: 30px;">

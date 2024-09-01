@@ -28,6 +28,8 @@
         <dd>The image that will be showed inside the video player when the video is ready for playback.</dd>
         <dt>Error poster <span class="property-type">number</span></dt>
         <dd>The image that will be showed inside the video player when the video cannot be played due to a problem.</dd>
+        <dt>Resize <span class="property-type">string</span></dt>
+        <dd>The video can be resized inside the available space.</dd>
         <dt>HLS config <span class="property-type">string</span></dt>
         <dd>The configuration (in json format) that will be passed to the HLS.js player.</dd>
     </dl>
@@ -109,6 +111,18 @@
     <dl class="message-properties">
         <dt class="optional">errorPoster<span class="property-type">string</span></dt>
         <dd>Override the error poster image.</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt class="optional">resizing<span class="property-type">string</span></dt>
+        <dd>
+            Override behaviour of resizing:
+            <ul>
+                <li><code>none</code>: don't resize (show centered)</li>
+                <li><code>fit_longest</code>: fit the longest dimension (keep the aspect ratio and leave remaining space empty)</li>
+                <li><code>fit_shortest</code>: fit the shortest dimension (keep the aspect ratio and crop the video)</li>
+                <li><code>fit_both</code>: fit both dimensions (don't keep the aspect ratio and fill the entire space)</li>
+            </ul>
+        </dd>
     </dl>
     <dl class="message-properties">
         <dt class="optional">hlsConfig<span class="property-type">json</span></dt>
