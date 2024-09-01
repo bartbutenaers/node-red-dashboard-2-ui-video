@@ -14,7 +14,7 @@ npm install bartbutenaers/node-red-contrib-2-ui-video
 ## Node Usage
 This node allows to play:
 + The common video and audio [formats](https://videojs.com/html5-video-support/), like e.g. H264 which is supported by all major browsers.
-+ Http Live Streaming (HLS) streaming.  Some browsers offer [native](https://caniuse.com/?search=hls) HLS out of the box, and otherwise this node will support it via the [Hls.js](https://github.com/video-dev/hls.js/blob/master/README.md) library.  This includes the playback of fragmented mp4 files (fmp4) via m3u8 playlists.
++ Http Live Streaming (HLS) streaming.  Some browsers offer [native](https://caniuse.com/?search=hls) HLS out of the box, and otherwise this node will support it via the [Hls.js](https://github.com/video-dev/hls.js/blob/master/README.md) library.  This includes the playback of fragmented mp4 files (fmp4) via m3u8 playlists.  See [this](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/HLS-introduction) wiki page for more information.
 
 The following example flow demonstrates how to play mp4 and hls, and how to control the widget via input messages:
 
