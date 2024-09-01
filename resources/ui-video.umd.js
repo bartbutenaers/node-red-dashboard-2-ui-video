@@ -3,7 +3,7 @@
   try {
     if (typeof document != "undefined") {
       var elementStyle = document.createElement("style");
-      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-35e6a8eb] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
+      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-995fa312] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
       document.head.appendChild(elementStyle);
     }
   } catch (e) {
@@ -25550,6 +25550,19 @@
         } else {
           return this.getProperty("readyPoster");
         }
+      },
+      objectFit() {
+        const resizing = this.getProperty("resizing");
+        switch (resizing) {
+          case "fit_longest":
+            return "contain";
+          case "fit_shortest":
+            return "cover";
+          case "fit_both":
+            return "fill";
+          case "none":
+            return "none";
+        }
       }
     },
     created() {
@@ -25725,6 +25738,7 @@
         this.updateDynamicProperty("intersectionThreshold", updates.intersectionThreshold);
         this.updateDynamicProperty("hlsLibrary", updates.hlsLibrary);
         this.updateDynamicProperty("logType", updates.logType);
+        this.updateDynamicProperty("resizing", updates.resizing);
         this.updateDynamicProperty("hlsConfig", updates.hlsConfig);
       },
       send(msg) {
@@ -25829,11 +25843,12 @@
         playsinline: "true",
         ref: "video",
         controls: $options.controls,
-        muted: $options.muted
-      }, null, 8, _hoisted_2)
+        muted: $options.muted,
+        style: vue.normalizeStyle({ objectFit: $options.objectFit })
+      }, null, 12, _hoisted_2)
     ]);
   }
-  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-35e6a8eb"]]);
+  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-995fa312"]]);
   exports2.UIVideo = UIVideo;
   Object.defineProperty(exports2, Symbol.toStringTag, { value: "Module" });
 });

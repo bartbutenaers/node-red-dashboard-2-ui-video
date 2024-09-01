@@ -52,6 +52,10 @@ module.exports = function (RED) {
 // TODO check whether the value is 'none', 'console' or 'msg'
                     base.stores.state.set(group.getBase(), node, msg, 'logType', updates.logType)
                 }
+                if (typeof updates.resizing !== 'undefined') {
+// TODO check whether the value is 'none', 'stretch', 'crop' or 'fit'
+                    base.stores.state.set(group.getBase(), node, msg, 'resizing', updates.resizing)
+                }
                 if (typeof updates.hlsConfig !== 'undefined') {
 // TODO check whether the value is a valid js object
                     base.stores.state.set(group.getBase(), node, msg, 'hlsConfig', updates.hlsConfig)
