@@ -49,6 +49,8 @@ This property can be overwritten dynamically via `msg.ui_update.sound` (with pos
 When this option is active, the video data won't be loaded when the video is not visible.  For example when we switch to another dashboard tabsheet.
 This property can be overwritten dynamically via `msg.ui_update.unloadHiddenVideo` (with possible values *'on'* and *'off'*).
 
+This is explained further in [this](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Unload-hidden-video) wiki page.
+
 ### Intersection threshold
 Specify the percentage of the video that needs to be visible (in the browser viewport), otherwise the video player will stop loading data:
 This property can be overwritten dynamically via `msg.ui_update.intersectionThreshold` (with possible values numbers between 0 and 100 percent).
