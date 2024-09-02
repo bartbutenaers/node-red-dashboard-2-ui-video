@@ -8,7 +8,7 @@ CAUTION: Currently this node is ***EXPERIMENTAL***.  It is not published on NPM 
 
 Run the following npm command in your Node-RED user directory (typically ~/.node-red):
 ```
-npm install bartbutenaers/node-red-contrib-2-ui-video
+npm install bartbutenaers/node-red-dashboard-2-ui-video
 ```
 
 ## Node Usage
