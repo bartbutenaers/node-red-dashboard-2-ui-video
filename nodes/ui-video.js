@@ -11,6 +11,15 @@ module.exports = function (RED) {
 
         const base = group.getBase()
 
+        function validateValue(name, value, allowedValues) {
+            if (allowedValues.includes(value)) {
+                node.error(`Property msg.ui_update.${name} can only have values: ${allowedValues}`)
+                return false
+            } else {
+                return true
+            }
+        }
+
         const beforeSend = async function (msg) {
             // dynamic properties
             const updates = msg.ui_update
@@ -23,12 +32,18 @@ module.exports = function (RED) {
                     base.stores.state.set(group.getBase(), node, msg, 'autoplay', updates.autoplay)
                 }
                 if (typeof updates.controls !== 'undefined') {
-// TODO check whether the value is 'show' or 'hide'
-                    base.stores.state.set(group.getBase(), node, msg, 'controls', updates.controls)
+                    if (['show', 'hide'].includes(updates.controls)) {
+                        base.stores.state.set(group.getBase(), node, msg, 'controls', updates.controls)
+                    } else {
+                        node.error('Property msg.ui_update.controls should be "show" or "hide"') 
+                    }
                 }
                 if (typeof updates.sound !== 'undefined') {
-// TODO check whether the value is 'on' or 'off'
-                    base.stores.state.set(group.getBase(), node, msg, 'sound', updates.sound)
+                    if (['on', 'off'].includes(updates.sound)) {
+                        base.stores.state.set(group.getBase(), node, msg, 'sound', updates.sound)
+                    } else {
+                        node.error('Property msg.ui_update.sound should be "on" or "off"')
+                    }
                 }
                 if (typeof updates.readyPoster !== 'undefined') {
                     base.stores.state.set(group.getBase(), node, msg, 'readyPoster', updates.readyPoster)
@@ -37,28 +52,46 @@ module.exports = function (RED) {
                     base.stores.state.set(group.getBase(), node, msg, 'errorPoster', updates.errorPoster)
                 }
                 if (typeof updates.unloadHiddenVideo !== 'undefined') {
-// TODO check whether the value is 'on' or 'off'
-                    base.stores.state.set(group.getBase(), node, msg, 'unloadHiddenVideo', updates.unloadHiddenVideo)
+                    if (['on', 'off'].includes(updates.unloadHiddenVideo)) {
+                        base.stores.state.set(group.getBase(), node, msg, 'unloadHiddenVideo', updates.unloadHiddenVideo)
+                    } else {
+                        node.error('Property msg.ui_update.unloadHiddenVideo should be "on" or "off"')
+                    }
                 }
                 if (typeof updates.intersectionThreshold !== 'undefined') {
-// TODO check whether the value is a number between 0 and 100
-                    base.stores.state.set(group.getBase(), node, msg, 'intersectionThreshold', updates.intersectionThreshold)
+                    if (typeof updates.intersectionThreshold === 'number' && updates.intersectionThreshold >= 0 && updates.intersectionThreshold <= 100) {
+                        base.stores.state.set(group.getBase(), node, msg, 'intersectionThreshold', updates.intersectionThreshold)
+                    } else {
+                        node.error('Property msg.ui_update.intersectionThreshold should be a number between 0 and 100')
+                    }
                 }
                 if (typeof updates.hlsLibrary !== 'undefined') {
-// TODO check whether the value is 'native' or 'hlsjs'
-                    base.stores.state.set(group.getBase(), node, msg, 'hlsLibrary', updates.hlsLibrary)
+                    if (['native', 'hlsjs'].includes(updates.hlsLibrary)) {
+                        base.stores.state.set(group.getBase(), node, msg, 'hlsLibrary', updates.hlsLibrary)
+                    } else {
+                        node.error('Property msg.ui_update.hlsLibrary should be "native" or "hlsjs"')
+                    }
                 }
                 if (typeof updates.logType !== 'undefined') {
-// TODO check whether the value is 'none', 'console' or 'msg'
-                    base.stores.state.set(group.getBase(), node, msg, 'logType', updates.logType)
+                    if (['none', 'console', 'msg'].includes(updates.logType)) {
+                        base.stores.state.set(group.getBase(), node, msg, 'logType', updates.logType)
+                    } else {
+                        node.error('Property msg.ui_update.logType should be "none", "console" or "msg"')
+                    }
                 }
                 if (typeof updates.resizing !== 'undefined') {
-// TODO check whether the value is 'none', 'stretch', 'crop' or 'fit'
-                    base.stores.state.set(group.getBase(), node, msg, 'resizing', updates.resizing)
+                    if (['none', 'fit_longest', 'fit_shortest', 'fit_both'].includes(updates.resizing)) {
+                        base.stores.state.set(group.getBase(), node, msg, 'resizing', updates.resizing)
+                    } else {
+                        node.error('Property msg.ui_update.resizing should be "none", "fit_longest", "fit_shortest" or "fit_both"')
+                    }
                 }
                 if (typeof updates.hlsConfig !== 'undefined') {
-// TODO check whether the value is a valid js object
-                    base.stores.state.set(group.getBase(), node, msg, 'hlsConfig', updates.hlsConfig)
+                    if (typeof updates.hlsConfig === 'object') {
+                        base.stores.state.set(group.getBase(), node, msg, 'hlsConfig', updates.hlsConfig)
+                    } else {
+                        node.error('Property msg.ui_update.hlsConfig should be an object')
+                    }
                 }
             }
 
@@ -67,7 +100,7 @@ module.exports = function (RED) {
 
         const evts = {
             onAction: true,
-            beforeSend
+            beforeSend: beforeSend
         }
 
         // inform the dashboard UI that we are adding this node
