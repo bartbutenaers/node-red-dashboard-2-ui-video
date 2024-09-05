@@ -1,0 +1,637 @@
+[
+    {
+        "id": "69c8549be7403acc",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Show controls",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"controls\":\"show\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 370,
+        "y": 4480,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "3a8786bcac5ca7fa",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Hide controls",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"controls\":\"hide\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 370,
+        "y": 4520,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "a8eba1465477a866",
+        "type": "ui-video",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "",
+        "group": "1e2acdd1dfa22bf9",
+        "width": 0,
+        "height": 0,
+        "order": 6,
+        "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "autoplay": "off",
+        "controls": "show",
+        "sound": "off",
+        "unloadHiddenVideo": "on",
+        "intersectionThreshold": "20",
+        "readyPoster": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB2aWV3Qm94PSIwIDAgODAwMCA2MDAwIj48dGV4dCBmaWxsPSIjMGYwIiBzdHJva2Utd2lkdGg9IjAiIGR4PSIwIiBkeT0iMCIgZm9udC1mYW1pbHk9IiZxdW90O2UyY3B1d3p4YldsMTo6OlJvYm90byZxdW90OyIgZm9udC1zaXplPSI2MDAiIGZvbnQtd2VpZ2h0PSI3MDAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKCAxMDExLjI0IDMyMDQuODgpIj48dHNwYW4geT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBmb250LXdlaWdodD0iNzAwIj48IVtDREFUQVsKVmlkZW8gUGxheWJhY2sgUmVhZHkKXV0+PC90c3Bhbj48L3RleHQ+PC9zdmc+Cg==",
+        "errorPoster": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB2aWV3Qm94PSIwIDAgODAwMCA2MDAwIj48dGV4dCBmaWxsPSJyZWQiIHN0cm9rZS13aWR0aD0iMCIgZHg9IjAiIGR5PSIwIiBmb250LWZhbWlseT0iJnF1b3Q7ZW42OXdhSUtnN0MxOjo6Um9ib3RvJnF1b3Q7IiBmb250LXNpemU9IjYwMCIgZm9udC13ZWlnaHQ9IjcwMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoIDExODMuOTYgMzIwNC44OCkiPjx0c3BhbiB5PSIwIiBzdHJva2Utd2lkdGg9IjAiIGZvbnQtd2VpZ2h0PSI3MDAiPjwhW0NEQVRBWwpWaWRlbyBQbGF5YmFjayBFcnJvcgpdXT48L3RzcGFuPjwvdGV4dD48L3N2Zz4K",
+        "logType": "msg",
+        "hlsLibrary": "native",
+        "resizing": "none",
+        "hlsConfig": "{\r\n    \"liveDurationInfinity\": true,\r\n    \"liveBackBufferLength\": 5,\r\n    \"maxBufferLength\": 10,\r\n    \"manifestLoadingTimeOut\": 1000,\r\n    \"manifestLoadingMaxRetry\": 10,\r\n    \"manifestLoadingRetryDelay\": 500\r\n}",
+        "x": 570,
+        "y": 4380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "457a256d14c68310",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Sound on",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"sound\":\"on\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 380,
+        "y": 4580,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "9f57e525fca627ef",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Sound off",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"sound\":\"off\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 380,
+        "y": 4620,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "20495dce4d83d063",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Autoplay on",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"autoplay\":\"on\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 370,
+        "y": 4680,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "711e70b75b2cd190",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Autoplay off",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"autoplay\":\"off\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 370,
+        "y": 4720,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "2f8fed2c37271907",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Start mp4 video",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"url\":\"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 360,
+        "y": 4380,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "5cfb8818e7111421",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Start m3u8 playlist",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"url\": \"https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 350,
+        "y": 4420,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "e2850c6bc5de0b2d",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Intersection threshold 50%",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"intersectionThreshold\": 50}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 330,
+        "y": 4920,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "782e530e2cd45b70",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Intersection threshold 10%",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"intersectionThreshold\": 10}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 330,
+        "y": 4880,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "9d9bea1ab12005a2",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Unload hidden video on",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"unloadHiddenVideo\": \"on\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 340,
+        "y": 4780,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "9aa153cff7c7e602",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Unload hidden video off",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"unloadHiddenVideo\": \"off\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 340,
+        "y": 4820,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "23f40d6cde01b2a0",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Hls native",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"hlsLibrary\": \"native\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 380,
+        "y": 4980,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "d59cb5030096bd63",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Hls.js",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"hlsLibrary\": \"hlsjs\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 390,
+        "y": 5020,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "d9f22c236efd9c8a",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "No log",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"logType\": \"none\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 390,
+        "y": 5080,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "5d5246c2b569cc59",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Log to console",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"logType\": \"console\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 360,
+        "y": 5120,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "22957ca648a6c9a8",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Log to output messages",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"logType\": \"msg\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 340,
+        "y": 5160,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "c32c1a52dbcfc184",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Fit longest dimension",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"resizing\":\"fit_longest\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 340,
+        "y": 5260,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "22bf63fb07592a56",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Fit shortest dimension",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"resizing\":\"fit_shortest\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 340,
+        "y": 5300,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "5e3b03568b05712f",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Fit both dimensions",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"resizing\":\"fit_both\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 350,
+        "y": 5340,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "b8b11071bec569e6",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "g": "6e8d516dbfa73328",
+        "name": "Don't resize",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"resizing\":\"none\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 370,
+        "y": 5220,
+        "wires": [
+            [
+                "a8eba1465477a866"
+            ]
+        ]
+    },
+    {
+        "id": "1e2acdd1dfa22bf9",
+        "type": "ui-group",
+        "name": "Experiments",
+        "page": "e06eacf47a88bb87",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "e06eacf47a88bb87",
+        "type": "ui-page",
+        "name": "Alarm",
+        "ui": "be29745a6e568f30",
+        "path": "/page9",
+        "icon": "lock",
+        "layout": "grid",
+        "theme": "a965ccfef139317a",
+        "order": 3,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "be29745a6e568f30",
+        "type": "ui-base",
+        "name": "UI Name",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control",
+            "ui-chart",
+            "ui-text-input",
+            "ui-dropdown"
+        ],
+        "showPathInSidebar": false,
+        "titleBarStyle": "default"
+    },
+    {
+        "id": "a965ccfef139317a",
+        "type": "ui-theme",
+        "name": "Default",
+        "colors": {
+            "surface": "#404040",
+            "primary": "#109fbc",
+            "bgPage": "#e8e8e8",
+            "groupBg": "#d6d6d6",
+            "groupOutline": "#6fbc10"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    }
+]
