@@ -34,29 +34,29 @@ This property can be overwritten dynamically via `msg.ui_update.url`.
 
 ### Autoplay
 When active, the video will automatically start playing when an url has been specified.
-This property can be overwritten dynamically via `msg.ui_update.autoplay` (with possible values *'on'* and *'off'*): see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.autoplay` (with possible values *'on'* and *'off'*): see example [flow](#example-flow---dynamic-properties).
 
 Note that e.g. the Chrome browser does not autoplay when the sound is on, because that can be very annoying for users.
 
 ### Controls
 When active, the controls will be displayed at the bottom of the video:
-This property can be overwritten dynamically via `msg.ui_update.controls` (with possible values *'show'* and *'hide'*): see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.controls` (with possible values *'show'* and *'hide'*): see example [flow](#example-flow---dynamic-properties).
 
 ![image](https://github.com/user-attachments/assets/a0844ddc-58d2-4d78-944c-4e92e66f8ef5)
 
 ### Sound
 When active, the video will not be muted while playing.
-This property can be overwritten dynamically via `msg.ui_update.sound` (with possible values *'on'* and *'off'*): see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.sound` (with possible values *'on'* and *'off'*): see example [flow](#example-flow---dynamic-properties).
 
 ### Hidden
 When this option is active, the video data won't be loaded when the video is not visible.  For example when we switch to another dashboard tabsheet.
-This property can be overwritten dynamically via `msg.ui_update.unloadHiddenVideo` (with possible values *'on'* and *'off'*): see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.unloadHiddenVideo` (with possible values *'on'* and *'off'*): see example [flow](#example-flow---dynamic-properties).
 
 This is explained further in [this](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Unload-hidden-video) wiki page.
 
 ### Intersection threshold
 Specify the percentage of the video that needs to be visible (in the browser viewport), otherwise the video player will stop loading data:
-This property can be overwritten dynamically via `msg.ui_update.intersectionThreshold` (with possible values numbers between 0 and 100 percent): see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.intersectionThreshold` (with possible values numbers between 0 and 100 percent): see example [flow](#example-flow---dynamic-properties).
 
 ![image](https://github.com/user-attachments/assets/85bfc61c-df78-4154-9206-851a50571708)
 
@@ -67,7 +67,7 @@ Specify which Hls library should be used to play m3u8 playlists:
 + *Use native Hls*: use native Hls when offered by the browser.  Note that not much browser support this.
 + *Always use Hls.js*: always use the Hls.js library, even when native Hls is supported.
 
-This property can be overwritten dynamically via `msg.ui_update.hlsLibrary` (with possible values *'native'* and *'hlsjs'*): see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.hlsLibrary` (with possible values *'native'* and *'hlsjs'*): see example [flow](#example-flow---dynamic-properties).
 
 ### Log type
 Specify how the ui node should log his information for troubleshooting:
@@ -75,19 +75,19 @@ Specify how the ui node should log his information for troubleshooting:
 + *Browser console log*: all log entries will be written to the browser console log, where the dashboard is running.
 + *Output messages*: all log entries will be send as messages to the output of this node.  That can be used for troubleshooting e.g. on mobile phones, where the browser console log is difficult to access.
 
-This property can be overwritten dynamically via `msg.ui_update.logType` (with possible values *'none'*, *'console'* and *'msg'*): see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.logType` (with possible values *'none'*, *'console'* and *'msg'*): see example [flow](#example-flow---dynamic-properties).
 
 ### Ready poster
 Image that will be shown inside the video player when the player has been initialized.  If no poster has been specified, the first frame of the video will be displayed.  See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Introduction-to-posters) for more information.
-This property can be overwritten dynamically via `msg.ui_update.readyPoster`: see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.readyPoster`: see example [flow](#example-flow---dynamic-properties).
 
 ### Error poster
 Image that will be shown inside the video player after a fatal error.  If no poster has been specified, the first frame of the video will be displayed.  See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Introduction-to-posters) for more information.
-This property can be overwritten dynamically via `msg.ui_update.errorPoster`: see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.errorPoster`: see example [flow](#example-flow---dynamic-properties).
 
 ### Resize
 Specify how the video will be displayed within the available area.  Because the size of the video will not exactly match the available space.
-This property can be overwritten dynamically via `msg.ui_update.resizing` (with possible values *'none'*, *'fit_longest'*, *'fit_shortest'* and *'fit_both'*): see example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/edit/main/README.md#example-flow---dynamic-properties).
+This property can be overwritten dynamically via `msg.ui_update.resizing` (with possible values *'none'*, *'fit_longest'*, *'fit_shortest'* and *'fit_both'*): see example [flow](#example-flow---dynamic-properties).
 
 See [this](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Adjustable-resizing) wiki page for more information.
 
