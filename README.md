@@ -90,5 +90,11 @@ This property can be overwritten dynamically via `msg.ui_update.resizing` (with 
 
 See [this](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Adjustable-resizing) wiki page for more information.
 
-### Config
-TODO
+### Hls Config
+When the Hls.js library is being used, a lot of [parameters](https://github.com/video-dev/hls.js/blob/master/docs/API.md) can be configured.  The following are the default parameters provided by this node:
++ *liveDurationInfinity*: This setting is set to `true`, to handle live streams with an infinite duration.  Meaning the player won’t stop playing after a certain time.
++ *liveBackBufferLength*: This setting is set to `5` to keep the last 5 seconds of the live stream in the back buffer, allowing for quick rewinds.
++ *maxBufferLength*: This setting is set to `10` to buffer up to 10 seconds of video content ahead of the current playback position.
++ *manifestLoadingTimeOut*: This setting is set to `1000` to have a timeout of 1 second (or 1000 milliseconds) for loading the manifest file.
++ *manifestLoadingMaxRetry*: This setting is set to `10` which is the maximum number of retry attempts for loading the manifest file, if the initial attempt fails
++ *manifestLoadingRetryDelay*: This setting is set to `500`to have a delay of 0.5 seconds (or 500 milliseconds) between retry attempts for loading the manifest file.
