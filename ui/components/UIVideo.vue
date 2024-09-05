@@ -154,8 +154,13 @@ export default {
 
         // Handle video element errors (invalid URL, failed network request, unsupported format, ...)
         this.videoElement.onerror = (event) => {
-            // TODO Should we do the same error handling as like in the case of Hls.ErrorTypes.OTHER_ERROR below?
-            this.log('error', `Video element error (code ${this.videoElement.error.code}): ${this.videoElement.error.message}`)
+            if (this.videoElement.error) {
+                // TODO Should we do the same error handling as like in the case of Hls.ErrorTypes.OTHER_ERROR below?
+                this.log('error', `Video element error (code ${this.videoElement.error.code}): ${this.videoElement.error.message}`)
+            } else {
+                // In some conditions (e.g. when the specified poster contains an svg syntax error), the error object will be undefined
+                this.log('error', `Video element error details: ${JSON.stringify(event)}`)
+            }
         }
 
         // ===========================================================
