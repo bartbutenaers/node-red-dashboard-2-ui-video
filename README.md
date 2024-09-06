@@ -19,7 +19,7 @@ This node allows to play:
 ### Example flow - dynamic properties
 The following example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/blob/main/examples/dynamic%20properties.json) demonstrates how to play mp4 and hls, and how to control the widget properties dynamically via input messages:
 
-![image](https://github.com/user-attachments/assets/63613839-30ac-4150-8c0f-1a917afbec22)
+![image](https://github.com/user-attachments/assets/84309b8a-953b-429c-a079-a4832dac7c93)
 
 ### Example flow - control via dashboard buttons
 And another example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/blob/main/examples/control%20via%20dashboard%20buttons.json) demonstrates how to control the video via dashboard buttons:
@@ -80,6 +80,8 @@ This property can be overwritten dynamically via `msg.ui_update.logType` (with p
 ### Ready poster
 Image that will be shown inside the video player when the player has been initialized.  If no poster has been specified, the first frame of the video will be displayed.  See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Introduction-to-posters) for more information.
 This property can be overwritten dynamically via `msg.ui_update.readyPoster`: see example [flow](#example-flow---dynamic-properties).
+
+See this [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Create-posters-at-runtime) page explains how to create (ready and error) posters at runtime.
 
 ### Error poster
 Image that will be shown inside the video player after a fatal error.  If no poster has been specified, the first frame of the video will be displayed.  See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Introduction-to-posters) for more information.
