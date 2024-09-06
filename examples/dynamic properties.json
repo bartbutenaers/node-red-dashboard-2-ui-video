@@ -1,9 +1,8 @@
 [
     {
-        "id": "69c8549be7403acc",
+        "id": "18c1d29458210a5c",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Show controls",
         "props": [
             {
@@ -17,19 +16,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 370,
-        "y": 4480,
+        "x": 850,
+        "y": 5360,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "3a8786bcac5ca7fa",
+        "id": "a4b2cbe2aebb66a6",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Hide controls",
         "props": [
             {
@@ -43,19 +41,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 370,
-        "y": 4520,
+        "x": 850,
+        "y": 5400,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "a8eba1465477a866",
+        "id": "dc4f78a829d372c7",
         "type": "ui-video",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "",
         "group": "1e2acdd1dfa22bf9",
         "width": 0,
@@ -73,17 +70,16 @@
         "hlsLibrary": "native",
         "resizing": "none",
         "hlsConfig": "{\r\n    \"liveDurationInfinity\": true,\r\n    \"liveBackBufferLength\": 5,\r\n    \"maxBufferLength\": 10,\r\n    \"manifestLoadingTimeOut\": 1000,\r\n    \"manifestLoadingMaxRetry\": 10,\r\n    \"manifestLoadingRetryDelay\": 500\r\n}",
-        "x": 570,
-        "y": 4380,
+        "x": 1070,
+        "y": 5260,
         "wires": [
             []
         ]
     },
     {
-        "id": "457a256d14c68310",
+        "id": "f0728ef0fd9a34cd",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Sound on",
         "props": [
             {
@@ -97,19 +93,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 380,
-        "y": 4580,
+        "x": 860,
+        "y": 5460,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "9f57e525fca627ef",
+        "id": "f084353c9c81ecad",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Sound off",
         "props": [
             {
@@ -123,19 +118,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 380,
-        "y": 4620,
+        "x": 860,
+        "y": 5500,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "20495dce4d83d063",
+        "id": "c59df56685fe80bc",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Autoplay on",
         "props": [
             {
@@ -149,19 +143,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 370,
-        "y": 4680,
+        "x": 850,
+        "y": 5560,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "711e70b75b2cd190",
+        "id": "17b5d60b0bd5360c",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Autoplay off",
         "props": [
             {
@@ -175,19 +168,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 370,
-        "y": 4720,
+        "x": 850,
+        "y": 5600,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "2f8fed2c37271907",
+        "id": "c2305d3fe9b9c56a",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Start mp4 video",
         "props": [
             {
@@ -201,19 +193,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 360,
-        "y": 4380,
+        "x": 840,
+        "y": 5260,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "5cfb8818e7111421",
+        "id": "ac435145a9a01c04",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Start m3u8 playlist",
         "props": [
             {
@@ -227,19 +218,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 350,
-        "y": 4420,
+        "x": 830,
+        "y": 5300,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "e2850c6bc5de0b2d",
+        "id": "9abfa219e7064129",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Intersection threshold 50%",
         "props": [
             {
@@ -253,19 +243,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 330,
-        "y": 4920,
+        "x": 810,
+        "y": 5800,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "782e530e2cd45b70",
+        "id": "4a1e934374595426",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Intersection threshold 10%",
         "props": [
             {
@@ -279,19 +268,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 330,
-        "y": 4880,
+        "x": 810,
+        "y": 5760,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "9d9bea1ab12005a2",
+        "id": "5f263890b84b216e",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Unload hidden video on",
         "props": [
             {
@@ -305,19 +293,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 340,
-        "y": 4780,
+        "x": 820,
+        "y": 5660,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "9aa153cff7c7e602",
+        "id": "73a53cae2fec10bd",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Unload hidden video off",
         "props": [
             {
@@ -331,19 +318,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 340,
-        "y": 4820,
+        "x": 820,
+        "y": 5700,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "23f40d6cde01b2a0",
+        "id": "2f041810dc26f436",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Hls native",
         "props": [
             {
@@ -357,19 +343,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 380,
-        "y": 4980,
+        "x": 860,
+        "y": 5860,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "d59cb5030096bd63",
+        "id": "05f25838e12260d5",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Hls.js",
         "props": [
             {
@@ -383,19 +368,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 390,
-        "y": 5020,
+        "x": 870,
+        "y": 5900,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "d9f22c236efd9c8a",
+        "id": "9c4269dbda9e092f",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "No log",
         "props": [
             {
@@ -409,19 +393,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 390,
-        "y": 5080,
+        "x": 870,
+        "y": 5960,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "5d5246c2b569cc59",
+        "id": "b87a84171db186df",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Log to console",
         "props": [
             {
@@ -435,19 +418,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 360,
-        "y": 5120,
+        "x": 840,
+        "y": 6000,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "22957ca648a6c9a8",
+        "id": "9df122cf1245ec13",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Log to output messages",
         "props": [
             {
@@ -461,19 +443,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 340,
-        "y": 5160,
+        "x": 820,
+        "y": 6040,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "c32c1a52dbcfc184",
+        "id": "df7b964e43614895",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Fit longest dimension",
         "props": [
             {
@@ -487,19 +468,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 340,
-        "y": 5260,
+        "x": 820,
+        "y": 6140,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "22bf63fb07592a56",
+        "id": "62bf3a153dcd8045",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Fit shortest dimension",
         "props": [
             {
@@ -513,19 +493,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 340,
-        "y": 5300,
+        "x": 820,
+        "y": 6180,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "5e3b03568b05712f",
+        "id": "ca27c205349bd74a",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Fit both dimensions",
         "props": [
             {
@@ -539,19 +518,18 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 350,
-        "y": 5340,
+        "x": 830,
+        "y": 6220,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
             ]
         ]
     },
     {
-        "id": "b8b11071bec569e6",
+        "id": "2e111aea8f01c901",
         "type": "inject",
         "z": "4aad778b57d4f47b",
-        "g": "6e8d516dbfa73328",
         "name": "Don't resize",
         "props": [
             {
@@ -565,11 +543,61 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 370,
-        "y": 5220,
+        "x": 850,
+        "y": 6100,
         "wires": [
             [
-                "a8eba1465477a866"
+                "dc4f78a829d372c7"
+            ]
+        ]
+    },
+    {
+        "id": "299efffc9c204e77",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "name": "Error poster",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"errorPoster\": \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB2aWV3Qm94PSIwIDAgODAwMCA2MDAwIj4KICAgPHRleHQgZmlsbD0icmVkIiBzdHJva2Utd2lkdGg9IjAiIGR4PSIwIiBkeT0iMCIgZm9udC1mYW1pbHk9IiZxdW90O2VuNjl3YUlLZzdDMTo6OlJvYm90byZxdW90OyIgZm9udC1zaXplPSI2MDAiIGZvbnQtd2VpZ2h0PSI3MDAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKCAxMTgzLjk2IDMyMDQuODgpIj4KICAgICAgPHRzcGFuIHk9IjAiIHN0cm9rZS13aWR0aD0iMCIgZm9udC13ZWlnaHQ9IjcwMCI+PCFbQ0RBVEFbVmlkZW8gUGxheWJhY2sgRXJyb3JdXT48L3RzcGFuPgogICA8L3RleHQ+Cjwvc3ZnPg==\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 850,
+        "y": 6320,
+        "wires": [
+            [
+                "dc4f78a829d372c7"
+            ]
+        ]
+    },
+    {
+        "id": "9288265be5b8dc33",
+        "type": "inject",
+        "z": "4aad778b57d4f47b",
+        "name": "Ready poster",
+        "props": [
+            {
+                "p": "ui_update",
+                "v": "{\"readyPoster\":\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB2aWV3Qm94PSIwIDAgODAwMCA2MDAwIj4KICAgPHRleHQgZmlsbD0iIzBmMCIgc3Ryb2tlLXdpZHRoPSIwIiBkeD0iMCIgZHk9IjAiIGZvbnQtZmFtaWx5PSImcXVvdDtlMmNwdXd6eGJXbDE6OjpSb2JvdG8mcXVvdDsiIGZvbnQtc2l6ZT0iNjAwIiBmb250LXdlaWdodD0iNzAwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSggMTAxMS4yNCAzMjA0Ljg4KSI+CiAgICAgIDx0c3BhbiB5PSIwIiBzdHJva2Utd2lkdGg9IjAiIGZvbnQtd2VpZ2h0PSI3MDAiPjwhW0NEQVRBW0N1c3RvbSByZWFkeSB0ZXh0XV0+PC90c3Bhbj4KICAgIDwvdGV4dD4KIDwvc3ZnPg==\"}",
+                "vt": "json"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 850,
+        "y": 6280,
+        "wires": [
+            [
+                "dc4f78a829d372c7"
             ]
         ]
     },
