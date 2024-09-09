@@ -78,6 +78,30 @@
         ]
     },
     {
+        "id": "ef2d78caea2bd409",
+        "type": "ui-template",
+        "z": "4aad778b57d4f47b",
+        "group": "",
+        "page": "",
+        "ui": "be29745a6e568f30",
+        "name": "Styling",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "/* Apply a red border to all elements with CSS class video-red-border */\n.video-red-border {\n    border: 8px solid red\n}\n\n/* Apply a green border to all elements with CSS class video-red-border */\n.video-green-border {\n    border: 8px solid green\n}",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "site:style",
+        "className": "",
+        "x": 610,
+        "y": 4000,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "1e2acdd1dfa22bf9",
         "type": "ui-group",
         "name": "Experiments",
@@ -89,20 +113,6 @@
         "className": "",
         "visible": "true",
         "disabled": "false"
-    },
-    {
-        "id": "e06eacf47a88bb87",
-        "type": "ui-page",
-        "name": "Alarm",
-        "ui": "be29745a6e568f30",
-        "path": "/page9",
-        "icon": "lock",
-        "layout": "grid",
-        "theme": "a965ccfef139317a",
-        "order": 3,
-        "className": "",
-        "visible": true,
-        "disabled": false
     },
     {
         "id": "be29745a6e568f30",
@@ -119,6 +129,20 @@
         ],
         "showPathInSidebar": false,
         "titleBarStyle": "default"
+    },
+    {
+        "id": "e06eacf47a88bb87",
+        "type": "ui-page",
+        "name": "Alarm",
+        "ui": "be29745a6e568f30",
+        "path": "/page9",
+        "icon": "lock",
+        "layout": "grid",
+        "theme": "a965ccfef139317a",
+        "order": 3,
+        "className": "",
+        "visible": true,
+        "disabled": false
     },
     {
         "id": "a965ccfef139317a",
