@@ -32,7 +32,7 @@ And another example [flow](https://github.com/bartbutenaers/node-red-dashboard-2
 
 ### Class
 CSS class name(s) that should be applied to this widget, in order to style the video element.
-This property can be overwritten dynamically via `msg.ui_update.class`: see example in [wiki][(https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Styling-the-video-widget).
+This property can be overwritten dynamically via `msg.ui_update.class`: see example in [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Styling-the-video-widget).
 
 ### Url
 Link to a video resource (e.g. an mp4 or m3u8 file) which needs to be played.
