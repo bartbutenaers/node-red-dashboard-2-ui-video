@@ -16,6 +16,8 @@ This node allows to play:
 + The common video and audio [formats](https://videojs.com/html5-video-support/), like e.g. H264 which is supported by all major browsers.
 + Http Live Streaming (HLS) streaming.  Some browsers offer [native](https://caniuse.com/?search=hls) HLS out of the box, and otherwise this node will support it via the [Hls.js](https://github.com/video-dev/hls.js/blob/master/README.md) library.  This includes the playback of fragmented mp4 files (fmp4) via m3u8 playlists.  See [this](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/HLS-introduction) wiki page for more information.
 
+See the [wiki](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki) for a series of tutorials about this node.
+
 ### Example flow - dynamic properties
 The following example [flow](https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/blob/main/examples/dynamic%20properties.json) demonstrates how to play mp4 and hls, and how to control the widget properties dynamically via input messages:
 
@@ -30,6 +32,7 @@ And another example [flow](https://github.com/bartbutenaers/node-red-dashboard-2
 
 ### Class
 CSS class name(s) that should be applied to this widget, in order to style the video element.
+This property can be overwritten dynamically via `msg.ui_update.class`: see example in [wiki][(https://github.com/bartbutenaers/node-red-dashboard-2-ui-video/wiki/Styling-the-video-widget).
 
 ### Url
 Link to a video resource (e.g. an mp4 or m3u8 file) which needs to be played.
