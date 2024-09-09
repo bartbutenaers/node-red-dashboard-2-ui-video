@@ -3,7 +3,7 @@
   try {
     if (typeof document != "undefined") {
       var elementStyle = document.createElement("style");
-      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.ui-video-wrapper[data-v-995fa312] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n    border: 1px solid black;\n}"));
+      elementStyle.appendChild(document.createTextNode("/* CSS is auto scoped, but using named classes is still recommended */\n.nrdb-video[data-v-61ae52f6] {\n    width: 100%;\n    height: 100%;\n    padding: 10px;\n    margin: 10px;\n}"));
       document.head.appendChild(elementStyle);
     }
   } catch (e) {
@@ -25529,7 +25529,7 @@
       // Don't use computed fields 'url' and autoplay to setup the video element automatically
       // via VueJs binding, because those need to be set programmatically via Hls.js.
       // ======================================================================================
-      //TODO is this required?  ...mapState('data', ['messages', 'properties']),
+      ...vuex.mapState("data", ["messages"]),
       controls() {
         if (this.getProperty("controls") == "show") {
           return true;
@@ -25583,7 +25583,9 @@
       this.videoElement.onloadedmetadata = async (event) => {
         try {
           if (this.getProperty("autoplay") !== false) {
-            await this.videoElement.play();
+            if (!this.hlsPlayer.media) {
+              await this.videoElement.play();
+            }
           }
         } catch (err) {
           this.log("error", `videoElement.play() - ${err.name} - ${err.message}`);
@@ -25602,7 +25604,11 @@
         this.playerStatus = "stopped";
       };
       this.videoElement.onerror = (event) => {
-        this.log("error", `Video element error (code ${this.videoElement.error.code}): ${this.videoElement.error.message}`);
+        if (this.videoElement.error) {
+          this.log("error", `Video element error (code ${this.videoElement.error.code}): ${this.videoElement.error.message}`);
+        } else {
+          this.log("error", `Video element error details: ${JSON.stringify(event)}`);
+        }
       };
       for (let pictureInPictureElementProperty of ["webkitPictureInPictureElement", "pictureInPictureElement", "mozPictureInPictureElement", "msPictureInPictureElement"]) {
         if (pictureInPictureElementProperty in document) {
@@ -25706,9 +25712,6 @@
       this.startLoadingVideo();
     },
     unmounted() {
-      var _a, _b;
-      (_a = this.$socket) == null ? void 0 : _a.off("widget-load:" + this.id);
-      (_b = this.$socket) == null ? void 0 : _b.off("msg-input:" + this.id);
       this.hlsPlayer.destroy();
       if (this.fullScreenChangeEvent) {
         document.removeEventListener(this.fullScreenChangeEvent, this.fullScreenChangeEventHandler);
@@ -25746,6 +25749,12 @@
       },
       onInput(msg) {
         var _a;
+        if (msg.payload) {
+          this.$store.commit("data/bind", {
+            widgetId: this.id,
+            msg
+          });
+        }
         if (msg.payload === "unload") {
           this.stopLoadingVideo();
           this.videoPlaybackProblem = false;
@@ -25830,10 +25839,12 @@
       }
     }
   };
-  const _hoisted_1 = { className: "ui-video-wrapper" };
-  const _hoisted_2 = ["poster", "controls", "muted"];
+  const _hoisted_1 = ["poster", "controls", "muted"];
   function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-    return vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+    return vue.openBlock(), vue.createElementBlock("div", {
+      className: "nrdb-video",
+      class: vue.normalizeClass({ "nrdb-nolabel": !_ctx.label, [_ctx.className]: !!_ctx.className })
+    }, [
       vue.createElementVNode("video", {
         src: "",
         loop: "false",
@@ -25845,10 +25856,10 @@
         controls: $options.controls,
         muted: $options.muted,
         style: vue.normalizeStyle({ objectFit: $options.objectFit })
-      }, null, 12, _hoisted_2)
-    ]);
+      }, null, 12, _hoisted_1)
+    ], 2);
   }
-  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-995fa312"]]);
+  const UIVideo = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-61ae52f6"]]);
   exports2.UIVideo = UIVideo;
   Object.defineProperty(exports2, Symbol.toStringTag, { value: "Module" });
 });

@@ -28,6 +28,9 @@ And another example [flow](https://github.com/bartbutenaers/node-red-dashboard-2
 
 ## Node properties
 
+### Class
+CSS class name(s) that should be applied to this widget, in order to style the video element.
+
 ### Url
 Link to a video resource (e.g. an mp4 or m3u8 file) which needs to be played.
 This property can be overwritten dynamically via `msg.ui_update.url`.

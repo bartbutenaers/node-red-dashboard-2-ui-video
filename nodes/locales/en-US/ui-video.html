@@ -10,11 +10,15 @@
     </p>
     <h3>Properties</h3>
     <dl class="message-properties">
+        <dt>Class <span class="property-type">string</span></dt>
+        <dd>CSS class name(s) that should be applied to this widget.</dd>
         <dt>Url <span class="property-type">string</span></dt>
         <dd>The url of the video that needs to be played.</dd>
         <dt>Autoplay <span class="property-type">string</span></dt>
         <dd>Whether the specified video should start playing automatically or not.</dd>
         <dt>Controls <span class="property-type">string</span></dt>
+        <dd>Whether the controls (pause, play, ...) for the specified video should be shown or hidden.</dd>
+        <dt>Sound <span class="property-type">string</span></dt>
         <dd>Whether the sound for the specified video should be on or off.</dd>
         <dt>Hidden <span class="property-type">string</span></dt>
         <dd>Whether the video should stop loading when hidden (e.g. when switching to another dashboard tabsheet).</dd>
@@ -35,6 +39,10 @@
     </dl>
     <h3>Dynamic Properties (Inputs)</h3>
     <p>Any of the following can be appended to a <code>msg.ui_update</code> in order to override or set properties on this node at runtime.</p>
+    <dl class="message-properties">
+        <dt class="optional">class<span class="property-type">string</span></dt>
+        <dd>Append CSS class name(s) to this widget, in addition to the class name(s) specified in the config screen.</dd>
+    </dl>
     <dl class="message-properties">
         <dt class="optional">url<span class="property-type">string</span></dt>
         <dd>Override the current video url.</dd>

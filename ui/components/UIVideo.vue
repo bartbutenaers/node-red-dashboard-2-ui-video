@@ -1,5 +1,5 @@
 <template>
-    <div className="ui-video-wrapper">
+    <div className="nrdb-video" :class="{'nrdb-nolabel': !label, [className]: !!className}">
         <video
             src=""
             loop="false"
@@ -53,7 +53,7 @@ export default {
         // Don't use computed fields 'url' and autoplay to setup the video element automatically
         // via VueJs binding, because those need to be set programmatically via Hls.js.
         // ======================================================================================
-        //TODO is this required?  ...mapState('data', ['messages', 'properties']),
+        ...mapState('data', ['messages']),
         controls () {
             // When the 'controls' property has value 'hide', the 'controls' attribute should be removed
             // from the video element.  In Vue 3 that can be accomplished by binding the attribute to null.
@@ -104,7 +104,7 @@ export default {
         this.$socket.emit('widget-load', this.id)
     },
     mounted () {
-        // TODO is it required to store client-side input messages for this node.  Perhaps only if they have a payload?
+        //TODO is this necessary???
         this.$socket.on('widget-load:' + this.id, (msg) => {
             // load the latest message from the Node-RED datastore when this widget is loaded
             // storing it in our vuex store so that we have it saved as we navigate around
@@ -127,9 +127,13 @@ export default {
 
         this.videoElement.onloadedmetadata = async event => {
             try {
+                // As soon as the video metadata has been loaded, we will start the video (if autoplay is active).
                 if (this.getProperty('autoplay') !== false) {
-// TODO hls.js has already (below) its own metadata load handler, so only do this here when not playing hls
-                    await this.videoElement.play();
+                    // Don't do this for Hls streams, because further on the Hls stream will be (auto)started
+                    // when the MANIFEST_PARSED event occurs.
+                    if (!this.hlsPlayer.media) {
+                        await this.videoElement.play();
+                    }
                 }
             }
             catch (err) {
@@ -313,10 +317,6 @@ export default {
         this.startLoadingVideo()
     },
     unmounted () {
-        // TODO is this still required?
-        this.$socket?.off('widget-load:' + this.id)
-        this.$socket?.off('msg-input:' + this.id)
-
         this.hlsPlayer.destroy()
 
         if (this.fullScreenChangeEvent) {
@@ -360,6 +360,14 @@ export default {
             this.$socket.emit('widget-action', this.id, msg)
         },
         onInput (msg) {
+            // Make sure the last msg (that has a payload, containing the load/unload command) is being stored
+            if (msg.payload) {
+                this.$store.commit('data/bind', {
+                    widgetId: this.id,
+                    msg
+                })
+            }
+
             if (msg.payload === 'unload') {
                 this.stopLoadingVideo()
                 this.videoPlaybackProblem = false
@@ -405,7 +413,7 @@ export default {
 
             // Determine on the url how the video should be played
             if (url.endsWith('.m3u8')) {
-                // TODO currently we assume that all m3u8 playlist files are only used by HLS
+                // Since m3u8 is mainly used for Hls streaming, we assume here that we need to start a Hls stream.
                 if (this.nativeHlsSupported && this.getProperty('hlsLibrary') === 'native') {
                     // When the browser supports native HLS, the url can simply be passed to the video element
                     this.videoElement.src = url
@@ -429,8 +437,8 @@ export default {
             // The this.videoElement.play() is NOT executed here, but instead in the onMetaDataLoaded event above
         },
         stopLoadingVideo () {
-            // Check whether HLS.js is currently attached to the video element (in that case hls.media refers to the video element)
-            // TODO what in case of native HLS streaming?
+            // Check whether HLS.js is currently attached to the video element (in that case hls.media refers to the video element).
+            // This doesn't need to be executed for all other types of video (mp4, webm, native Hls, ...).
             if (this.hlsPlayer.media) {
                 // Ask hls.js to stop streaming
                 this.hlsPlayer.stopLoad()
@@ -438,7 +446,8 @@ export default {
                 // Detach hls.js from the video element
                 this.hlsPlayer.detachMedia()
 
-                // TODO the original ui-mp4frag node did extra cleanup
+                // TODO the original ui-mp4frag node did extra cleanup, but that would mean that in startLoadingVideo
+                // the player should be created again.  Let's wait and see until users are stuck somehow...
                 //this.hlsPlayer.destroy()
                 //this.hlsPlayer = undefined
             }
@@ -487,11 +496,10 @@ export default {
 
 <style scoped>
 /* CSS is auto scoped, but using named classes is still recommended */
-.ui-video-wrapper {
+.nrdb-video {
     width: 100%;
     height: 100%;
     padding: 10px;
     margin: 10px;
-    border: 1px solid black;
 }
 </style>
