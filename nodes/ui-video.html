@@ -120,21 +120,21 @@
 
 <script type="text/html" data-template-name="ui-video">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="ui-video.label.name"></label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-group"><i class="fa fa-table"></i> Group</label>
+        <label for="node-input-group"><i class="fa fa-table"></i> <span data-i18n="ui-video.label.group"></label>
         <input type="text" id="node-input-group">
     </div>
     <div class="form-row">
-        <label><i class="fa fa-object-group"></i> <span data-i18n="ui-example.label.size"></label>
+        <label><i class="fa fa-object-group"></i> <span data-i18n="ui-video.label.size"></label>
         <input type="hidden" id="node-input-width">
         <input type="hidden" id="node-input-height">
         <button class="editor-button" id="node-input-size"></button>
     </div>
     <div class="form-row">
-        <label for="node-input-className"><i class="fa fa-code"></i> Class</label>
+        <label for="node-input-className"><i class="fa fa-code"></i> <span data-i18n="ui-video.label.class"></label>
         <input style="width: 70%;" type="text" id="node-input-className" placeholder="Optional CSS class name(s)">
     </div>
     <div class="form-row">
@@ -145,71 +145,71 @@
         <!-- Content of all tabsheets -->
         <div id="node-video-tabsheet-general" style="margin-top: 30px;">           
             <div class="form-row">
-                <label for="node-input-url"><i class="fa fa-globe"></i> Stream url</label>
+                <label for="node-input-url"><i class="fa fa-globe"></i> <span data-i18n="ui-video.label.url"></label>
                 <input type="text" id="node-input-url">
             </div>
             <div class="form-row">
-                <label for="node-input-autoplay"><i class="fa fa-play-circle"></i> Autoplay</label>
+                <label for="node-input-autoplay"><i class="fa fa-play-circle"></i> <span data-i18n="ui-video.label.autoplay"></label>
                 <select id="node-input-autoplay" style="width:70%;">
-                    <option value="on">On</option>
-                    <option value="off">Off</option>
+                    <option value="on" data-i18n="ui-video.option.on"></option>
+                    <option value="off" data-i18n="ui-video.option.off"></option>
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-input-controls"><i class="fa fa-sliders"></i> Controls</label>
+                <label for="node-input-controls"><i class="fa fa-sliders"></i> <span data-i18n="ui-video.label.controls"></label>
                 <select id="node-input-controls" style="width:70%;">
-                    <option value="show">Show</option>
-                    <option value="hide">Hide</option>
+                    <option value="show" data-i18n="ui-video.option.show"></option>
+                    <option value="hide" data-i18n="ui-video.option.hide"></option>
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-input-sound"><i class="fa fa-volume-up"></i> Sound</label>
+                <label for="node-input-sound"><i class="fa fa-volume-up"></i> <span data-i18n="ui-video.label.sound"></label>
                 <select id="node-input-sound" style="width:70%;">
-                    <option value="on">On</option>
-                    <option value="off">Off</option>
+                    <option value="on" data-i18n="ui-video.option.on"></option>
+                    <option value="off" data-i18n="ui-video.option.off"></option>
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-input-unloadHiddenVideo"><i class="fa fa-eye-slash"></i> Hidden</label>
+                <label for="node-input-unloadHiddenVideo"><i class="fa fa-eye-slash"></i> <span data-i18n="ui-video.label.hidden"></label>
                 <select id="node-input-unloadHiddenVideo" style="width:70%;">
-                    <option value="on">Unload hidden video</option>
-                    <option value="off">Keep hidden video</option>
+                    <option value="on" data-i18n="ui-video.option.unloadHidden"></option>
+                    <option value="off" data-i18n="ui-video.option.keepHidden"></option>
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-input-intersectionThreshold"><i class="fa fa-window-restore"></i> Intersection</label>
+                <label for="node-input-intersectionThreshold"><i class="fa fa-window-restore"></i> <span data-i18n="ui-video.label.intersection"></label>
                 <input type="number" id="node-input-intersectionThreshold" min="0" max="100" step="1">
             </div>
             <div class="form-row">
-                <label for="node-input-logType"><i class="fa fa-file-text-o"></i> Log type</label>
+                <label for="node-input-logType"><i class="fa fa-file-text-o"></i> <span data-i18n="ui-video.label.logType"></label>
                 <select id="node-input-logType" style="width:70%;">
-                    <option value="none">None</option>
-                    <option value="console">Browser console</option>
-                    <option value="msg">Output msg</option>
+                    <option value="none" data-i18n="ui-video.option.none"></option>
+                    <option value="console" data-i18n="ui-video.option.browserConsole"></option>
+                    <option value="msg" data-i18n="ui-video.option.outputMsg"></option>
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-input-hlsLibrary"><i class="fa fa-bars"></i> Hls</label>
+                <label for="node-input-hlsLibrary"><i class="fa fa-bars"></i> <span data-i18n="ui-video.label.hls"></label>
                 <select id="node-input-hlsLibrary" style="width:70%;">
-                    <option value="native">Use native Hls</option>
-                    <option value="hlsjs">Use Hls.js</option>
+                    <option value="native" data-i18n="ui-video.option.nativeHls"></option>
+                    <option value="hlsjs" data-i18n="ui-video.option.hlsJs"></option>
                 </select>
             </div>
             <div class="form-row">
-                <label for="node-input-readyPoster"><i class="fa fa-file-image-o"></i> Ready poster</label>
+                <label for="node-input-readyPoster"><i class="fa fa-file-image-o"></i> <span data-i18n="ui-video.label.readyPoster"></label>
                 <input type="text" id="node-input-readyPoster" />
             </div>
             <div class="form-row">
-                <label for="node-input-errorPoster"><i class="fa fa-file-image-o"></i> Error poster</label>
+                <label for="node-input-errorPoster"><i class="fa fa-file-image-o"></i> <span data-i18n="ui-video.label.errorPoster"></label>
                 <input type="text" id="node-input-errorPoster" />
             </div>
             <div class="form-row">
-                <label for="node-input-resizing"><i class="fa fa-arrows-alt"></i> Resize</label>
+                <label for="node-input-resizing"><i class="fa fa-arrows-alt"></i> <span data-i18n="ui-video.label.resize"></label>
                 <select id="node-input-resizing">
-                    <option value="none">None</option>          
-                    <option value="fit_longest">Fit longest dimension</option>
-                    <option value="fit_shortest">Fit shortest dimension</option>
-                    <option value="fit_both">Fit both dimensions</option>
+                    <option value="none" data-i18n="ui-video.option.none"></option>          
+                    <option value="fit_longest" data-i18n="ui-video.option.fitLongest"></option>
+                    <option value="fit_shortest" data-i18n="ui-video.option.fitShortest"></option>
+                    <option value="fit_both" data-i18n="ui-video.option.fitBoth"></option>
                 </select>
             </div>
         </div>

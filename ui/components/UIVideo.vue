@@ -317,6 +317,8 @@ export default {
         this.startLoadingVideo()
     },
     unmounted () {
+        this.$socket?.off('widget-load:' + this.id)
+
         this.hlsPlayer.destroy()
 
         if (this.fullScreenChangeEvent) {

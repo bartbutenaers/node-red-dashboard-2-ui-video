@@ -1,7 +1,37 @@
 {
-    "ui-video" : {
+    "ui-video": {
         "label": {
-            "size": "Size"
+            "name": "Name",
+            "group": "Group",
+            "size": "Size",
+            "class": "Class",
+            "url": "Url",
+            "autoplay": "Autoplay",
+            "controls": "Controls",
+            "sound": "Sound",
+            "hidden": "Hidden",
+            "intersection": "Intersection",
+            "logType": "Log type",
+            "hls": "Hls",
+            "readyPoster": "Ready poster",
+            "errorPoster": "Error poster",
+            "resize": "Resize"
+        },
+        "option": {
+            "on": "On",
+            "off": "Off",
+            "show": "Show",
+            "hide": "Hide",
+            "unloadHidden": "Unload hidden video",
+            "keepHidden": "Keep hidden video",
+            "none": "None",
+            "browserConsole": "Browser console",
+            "outputMsg": "Output msg",
+            "fitLongest": "Fit longest dimension",
+            "fitShortest": "Fit shortest dimension",
+            "fitBoth": "Fit both dimensions",
+            "nativeHls": "Use native Hls",
+            "hlsJs": "Use Hls.js"
         }
     }
 }
